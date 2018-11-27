@@ -1,37 +1,116 @@
-## Welcome to GitHub Pages
+# Welcome to Genome-Analysis-Tutorial Page
 
-You can use the [editor on GitHub](https://github.com/KennethJHan/Genome-Analysis-Tutorial/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This page will help you to learn how to make pipeline based on GATK BestPractice.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+From this page, <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource">https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource</a> you can download resorce file such as reference fasta, samtools, bwa, picard, GATK4, snpEff and raw fastq file.
 
-### Markdown
+YES! This tutorial is based on GATK4 which is latest tool from Broad Institute.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+I hope everyone learns how to analyze gene data and contributes scientific field.
 
-```markdown
-Syntax highlighted code block
+ENJOY!!
+<br><br>
 
-# Header 1
-## Header 2
-### Header 3
+## 1. DOWNLOAD RESOURCES
 
-- Bulleted
-- List
+Download all the resorces from this page.
+<a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource">https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource</a>
 
-1. Numbered
-2. List
+## 2. INSTALL TOOL
+### 2.1. INSTALL BWA
 
-**Bold** and _Italic_ and `Code` text
+```bash
+# 1) Download BWA (bwa-0.7.17.tar.bz2)
+wget https://downloads.sourceforge.net/project/bio-bwa/bwa-0.7.17.tar.bz2
 
-[Link](url) and ![Image](src)
+# 2) Extract bwa-0.7.17.tar.bz2
+tar xf bwa-0.7.17.tar.bz2
+
+# 3) Install BWA
+make
+
+# 4) Confirm Installation
+./bwa
+Program: bwa (alignment via Burrows-Wheeler transformation)
+Version: 0.7.17-r1188
+Contact: Heng Li <lh3@sanger.ac.uk>
+
+Usage:   bwa <command> [options]
+
+Command: index         index sequences in the FASTA format
+         mem           BWA-MEM algorithm
+...
+
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### 2.2. INSTALL SAMTOOLS
 
-### Jekyll Themes
+```bash
+# 1) Download Samtools
+wget https://downloads.sourceforge.net/project/samtools/samtools/1.9/samtools-1.9.tar.bz2
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/KennethJHan/Genome-Analysis-Tutorial/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+# 2) Extract samtools-1.9.tar.bz2
+tar xf samtools-1.9.tar.bz2
 
-### Support or Contact
+# 3) Install samtools
+./configure --prefix=/YOUR/DIRECTORY/TO/INSTALL
+make && make install
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# 4) Confirm Installation
+./samtools
+
+Program: samtools (Tools for alignments in the SAM format)
+Version: 1.9 (using htslib 1.9)
+
+Usage:   samtools <command> [options]
+
+Commands:
+  -- Indexing
+     dict           create a sequence dictionary file
+     faidx          index/extract FASTA
+...
+
+```
+
+### 2.3. INSTALL Picard
+
+```bash
+# 1) Download Picard
+wget https://github.com/broadinstitute/picard/releases/download/2.18.17/picard.jar
+
+# 2) Run Picard
+java -jar picard.jar
+
+## RUNNING ON JAVA8 (NOT JAVA7)
+
+```
+
+### 2.4. INSTALL GATK4
+
+```bash
+# 1) Download GATK4
+wget https://github.com/broadinstitute/gatk/releases/download/4.0.11.0/gatk-4.0.11.0.zip
+
+# 2) Extract
+unzip gatk-4.0.11.0.zip
+
+# 3) Run GATK4
+java -jar gatk-package-4.0.11.0-local.jar
+
+## RUNNING ON JAVA8 (NOT JAVA7)
+```
+
+### 2.5. INSTALL SnpEff
+
+```bash
+# 1) Download SnpEff
+wget https://downloads.sourceforge.net/project/snpeff/snpEff_latest_core.zip
+
+# 2) Extract
+unzip snpEff_latest_core.zip
+
+# 3) Run SnpEff
+java -jar snpEff.jar
+
+## RUNNING ON JAVA8 (NOT JAVA7)
+```
