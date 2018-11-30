@@ -1,5 +1,8 @@
 # Welcome to Genome-Analysis-Tutorial Page
 
+Please visit this site to see web version of this git repository.
+https://kennethjhan.github.io/Genome-Analysis-Tutorial/ 
+
 This page will help you to learn how to make pipeline based on GATK BestPractice.
 
 From this page, <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource">https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource</a> you can download resorce file such as reference fasta, samtools, bwa, picard, GATK4, snpEff and raw fastq file.
