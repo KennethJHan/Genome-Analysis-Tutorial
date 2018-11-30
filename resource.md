@@ -1,5 +1,6 @@
 # Resource Page
 
+### <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/">GO BACK TO HOME</a>
 
 ## Reference
 <a href="https://software.broadinstitute.org/gatk/download/bundle">reference from GATK bundle</a> - please visit ftp.
