@@ -1,9 +1,16 @@
 # Resource Page
 
 
-## Resource
-<a href="https://console.cloud.google.com/storage/browser/gatk-legacy-bundles/hg19/">reference hg19</a>
+## Reference
+<a href="https://software.broadinstitute.org/gatk/download/bundle">reference from GATK bundle</a> - please visit ftp.
 <br>
+<a href="https://console.cloud.google.com/storage/browser/gatk-legacy-bundles/hg19/">reference hg19 from google cloud</a>
+<br>
+
+## GATK Bundle
+<a href="https://software.broadinstitute.org/gatk/download/bundle">reference from GATK bundle</a> - please visit ftp and download two files below.
+dbsnp_138.hg19.vcf.gz
+Mills_and_1000G_gold_standard.indels.hg19.sites.vcf.gz
 
 ## Tools
 <a href="https://sourceforge.net/projects/samtools/files/samtools/">samtools</a>
