@@ -1,7 +1,8 @@
 # Welcome to Genome-Analysis-Tutorial Page
 
 Please visit this site to see web version of this git repository.
-https://kennethjhan.github.io/Genome-Analysis-Tutorial/ 
+<br>
+<a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/">https://kennethjhan.github.io/Genome-Analysis-Tutorial/</a>
 
 This page will help you to learn how to make pipeline based on GATK BestPractice.
 
