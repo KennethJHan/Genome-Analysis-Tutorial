@@ -261,7 +261,7 @@ $ java -jar gatk-package-4.x.x.x-local.jar SelectVariants -R ucsc.hg19.fasta -V 
 $ java -jar gatk-package-4.x.x.x-local.jar VariantFiltration -R ucsc.hg19.fasta -V SRR000982.rawSNPs.vcf -filter "QD < 2.0  || FS > 200.0 || ReadPosRankSum < -20.0" --filter-name INDEL_FILTER -O SRR000982.rawINDELs.Filtered.vcf
 
 # Combine SNPs and INDELs
-$ java -jar gatk-package-4.x.x.x-local.jar MergeVcfs -I SRR000982.rawINDELs.vcf -I SRR000982.rawINDELs.Filtered.vcf -O SRR000982.Filtered.Variants.vcf
+$ java -jar gatk-package-4.x.x.x-local.jar MergeVcfs -V SRR000982.rawINDELs.vcf -I SRR000982.rawINDELs.Filtered.vcf -O SRR000982.Filtered.Variants.vcf
 
 # Detailed Filter options are here. https://software.broadinstitute.org/gatk/documentation/article?id=2806
 ```
