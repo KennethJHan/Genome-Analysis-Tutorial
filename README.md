@@ -232,7 +232,7 @@ $ samtools index SRR000982.mapped.sorted.markdup.bam
 ## 6. GATK
 ### 6.1. GATK BaseRecalibrator
 ```bash
-$ java -jar gatk-package-4.x.x.x-local.jar BaseRecalibrator -I SRR000982.mapped.sorted.markdup.bam -R ucsc.hg19.fasta --known-sites dbsnp_138.hg19.vcf.gz --known-sites Mills_and_1000G_gold_standard.indels.hg19.sites.vcf.gz -o SRR000982.recal_data.table
+$ java -jar gatk-package-4.x.x.x-local.jar BaseRecalibrator -I SRR000982.mapped.sorted.markdup.bam -R ucsc.hg19.fasta --known-sites dbsnp_138.hg19.vcf.gz --known-sites Mills_and_1000G_gold_standard.indels.hg19.sites.vcf.gz -O SRR000982.recal_data.table
 
 $ java -jar gatk-package-4.x.x.x-local.jar ApplyBQSR -R ucsc.hg19.fasta -I SRR000982.mapped.sorted.markdup.bam --bqsr-recal-file SRR000982.recal_data.table -O SRR000982.mapped.sorted.markdup.recal.bam
 
