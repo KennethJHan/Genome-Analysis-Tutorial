@@ -1,0 +1,820 @@
+##fileformat=VCFv4.2
+##ALT=<ID=NON_REF,Description="Represents any possible alternative allele at this location">
+##FILTER=<ID=INDEL_FILTER,Description="QD < 2.0  || FS > 200.0 || ReadPosRankSum < -20.0">
+##FILTER=<ID=LowQual,Description="Low quality">
+##FILTER=<ID=SNP_FILTER,Description="QD < 2.0 || FS > 60.0 || MQ < 40.0 ||  MQRankSum < -12.5  ||  ReadPosRankSum < -8.0">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=MIN_DP,Number=1,Type=Integer,Description="Minimum DP observed within the GVCF block">
+##FORMAT=<ID=PGT,Number=1,Type=String,Description="Physical phasing haplotype information, describing how the alternate alleles are phased in relation to one another">
+##FORMAT=<ID=PID,Number=1,Type=String,Description="Physical phasing ID information, where each unique ID within a given sample (but not across samples) connects records within a phasing group">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification">
+##FORMAT=<ID=RGQ,Number=1,Type=Integer,Description="Unconditional reference genotype confidence, encoded as a phred quality -10*log10 p(genotype call is wrong)">
+##FORMAT=<ID=SB,Number=4,Type=Integer,Description="Per-sample component statistics which comprise the Fisher's Exact Test to detect strand bias.">
+##GATKCommandLine=<ID=GenotypeGVCFs,CommandLine="GenotypeGVCFs  --output SRR000982.rawVariants.vcf --variant SRR000982.g.vcf --reference /Users/jhan/etc/reference/hg19/ucsc.hg19.fasta  --use-new-qual-calculator false --annotate-with-num-discovered-alleles false --heterozygosity 0.001 --indel-heterozygosity 1.25E-4 --heterozygosity-stdev 0.01 --standard-min-confidence-threshold-for-calling 10.0 --max-alternate-alleles 6 --max-genotype-count 1024 --sample-ploidy 2 --num-reference-samples-if-no-call 0 --only-output-calls-starting-in-intervals false --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false --disable-tool-default-annotations false --enable-all-annotations false",Version=4.0.11.0,Date="December 15, 2018 12:44:45 AM KST">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes, for each ALT allele, in the same order as listed">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency, for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=BaseQRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt Vs. Ref base qualities">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth; some reads may have been filtered">
+##INFO=<ID=DS,Number=0,Type=Flag,Description="Were any of the samples downsampled?">
+##INFO=<ID=END,Number=1,Type=Integer,Description="Stop position of the interval">
+##INFO=<ID=ExcessHet,Number=1,Type=Float,Description="Phred-scaled p-value for exact test of excess heterozygosity">
+##INFO=<ID=FS,Number=1,Type=Float,Description="Phred-scaled p-value using Fisher's exact test to detect strand bias">
+##INFO=<ID=InbreedingCoeff,Number=1,Type=Float,Description="Inbreeding coefficient as estimated from the genotype likelihoods per-sample when compared against the Hardy-Weinberg expectation">
+##INFO=<ID=MLEAC,Number=A,Type=Integer,Description="Maximum likelihood expectation (MLE) for the allele counts (not necessarily the same as the AC), for each ALT allele, in the same order as listed">
+##INFO=<ID=MLEAF,Number=A,Type=Float,Description="Maximum likelihood expectation (MLE) for the allele frequency (not necessarily the same as the AF), for each ALT allele, in the same order as listed">
+##INFO=<ID=MQ,Number=1,Type=Float,Description="RMS Mapping Quality">
+##INFO=<ID=MQRankSum,Number=1,Type=Float,Description="Z-score From Wilcoxon rank sum test of Alt vs. Ref read mapping qualities">
+##INFO=<ID=QD,Number=1,Type=Float,Description="Variant Confidence/Quality by Depth">
+##INFO=<ID=RAW_MQandDP,Number=2,Type=Integer,Description="Raw data (sum of squared MQ and total depth) for improved RMS Mapping Quality calculation. Incompatible with deprecated RAW_MQ formulation.">
+##INFO=<ID=ReadPosRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt vs. Ref read position bias">
+##INFO=<ID=SOR,Number=1,Type=Float,Description="Symmetric Odds Ratio of 2x2 contingency table to detect strand bias">
+##contig=<ID=chrM,length=16571,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr1,length=249250621,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr2,length=243199373,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr3,length=198022430,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr4,length=191154276,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr5,length=180915260,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6,length=171115067,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr7,length=159138663,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr8,length=146364022,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr9,length=141213431,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr10,length=135534747,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr11,length=135006516,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr12,length=133851895,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr13,length=115169878,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr14,length=107349540,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr15,length=102531392,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr16,length=90354753,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr17,length=81195210,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr18,length=78077248,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr19,length=59128983,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr20,length=63025520,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr21,length=48129895,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr22,length=51304566,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrX,length=155270560,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrY,length=59373566,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr1_gl000191_random,length=106433,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr1_gl000192_random,length=547496,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr4_ctg9_hap1,length=590426,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr4_gl000193_random,length=189789,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr4_gl000194_random,length=191469,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_apd_hap1,length=4622290,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_cox_hap2,length=4795371,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_dbb_hap3,length=4610396,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_mann_hap4,length=4683263,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_mcf_hap5,length=4833398,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_qbl_hap6,length=4611984,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr6_ssto_hap7,length=4928567,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr7_gl000195_random,length=182896,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr8_gl000196_random,length=38914,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr8_gl000197_random,length=37175,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr9_gl000198_random,length=90085,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr9_gl000199_random,length=169874,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr9_gl000200_random,length=187035,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr9_gl000201_random,length=36148,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr11_gl000202_random,length=40103,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr17_ctg5_hap1,length=1680828,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr17_gl000203_random,length=37498,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr17_gl000204_random,length=81310,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr17_gl000205_random,length=174588,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr17_gl000206_random,length=41001,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr18_gl000207_random,length=4262,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr19_gl000208_random,length=92689,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr19_gl000209_random,length=159169,assembly=ucsc.hg19.fasta>
+##contig=<ID=chr21_gl000210_random,length=27682,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000211,length=166566,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000212,length=186858,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000213,length=164239,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000214,length=137718,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000215,length=172545,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000216,length=172294,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000217,length=172149,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000218,length=161147,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000219,length=179198,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000220,length=161802,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000221,length=155397,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000222,length=186861,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000223,length=180455,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000224,length=179693,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000225,length=211173,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000226,length=15008,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000227,length=128374,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000228,length=129120,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000229,length=19913,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000230,length=43691,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000231,length=27386,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000232,length=40652,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000233,length=45941,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000234,length=40531,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000235,length=34474,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000236,length=41934,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000237,length=45867,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000238,length=39939,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000239,length=33824,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000240,length=41933,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000241,length=42152,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000242,length=43523,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000243,length=43341,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000244,length=39929,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000245,length=36651,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000246,length=38154,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000247,length=36422,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000248,length=39786,assembly=ucsc.hg19.fasta>
+##contig=<ID=chrUn_gl000249,length=38502,assembly=ucsc.hg19.fasta>
+##reference=file:///Users/jhan/etc/reference/hg19/ucsc.hg19.fasta
+##source=GenotypeGVCFs
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SRR000982
+chrM	73	.	G	A	117.90	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=23.58;SOR=1.022	GT:AD:DP:GQ:PL	1/1:0,5:5:15:146,15,0
+chrM	73	.	G	A	117.90	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=23.58;SOR=1.022	GT:AD:DP:GQ:PL	1/1:0,5:5:15:146,15,0
+chrM	150	.	T	C	362.78	PASS	AC=2;AF=1.00;AN=2;DP=10;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=59.90;QD=25.36;SOR=0.892	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,9:9:27:1|1:150_T_C:391,27,0
+chrM	150	.	T	C	362.78	PASS	AC=2;AF=1.00;AN=2;DP=10;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=59.90;QD=25.36;SOR=0.892	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,9:9:27:1|1:150_T_C:391,27,0
+chrM	152	.	T	C	362.78	PASS	AC=2;AF=1.00;AN=2;DP=9;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=59.89;QD=28.73;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:27:1|1:150_T_C:391,27,0
+chrM	152	.	T	C	362.78	PASS	AC=2;AF=1.00;AN=2;DP=9;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=59.89;QD=28.73;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:27:1|1:150_T_C:391,27,0
+chrM	195	.	C	T	130.90	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.45;QD=26.18;SOR=1.981	GT:AD:DP:GQ:PL	1/1:0,5:5:15:159,15,0
+chrM	195	.	C	T	130.90	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.45;QD=26.18;SOR=1.981	GT:AD:DP:GQ:PL	1/1:0,5:5:15:159,15,0
+chrM	410	.	A	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrM	410	.	A	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrM	2261	.	C	T	156.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=57.64;QD=26.14;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:185,18,0
+chrM	2261	.	C	T	156.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=57.64;QD=26.14;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:185,18,0
+chrM	2354	.	C	T	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.09;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chrM	2354	.	C	T	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.09;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chrM	2708	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chrM	2708	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chrM	4746	.	A	G	87.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=51.74;QD=21.76;SOR=1.609	GT:AD:DP:GQ:PL	1/1:0,4:4:12:115,12,0
+chrM	4746	.	A	G	87.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=51.74;QD=21.76;SOR=1.609	GT:AD:DP:GQ:PL	1/1:0,4:4:12:115,12,0
+chrM	5581	.	C	T	124.90	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=48.45;QD=24.98;SOR=3.611	GT:AD:DP:GQ:PL	1/1:0,5:5:15:153,15,0
+chrM	5581	.	C	T	124.90	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=48.45;QD=24.98;SOR=3.611	GT:AD:DP:GQ:PL	1/1:0,5:5:15:153,15,0
+chrM	7338	.	G	A	37.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=46.50;QD=18.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:65,6,0
+chrM	7338	.	G	A	37.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=46.50;QD=18.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:65,6,0
+chrM	8702	.	G	A	64.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:92,9,0
+chrM	8702	.	G	A	64.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:92,9,0
+chrM	10399	.	G	A	157.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=26.31;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:186,18,0
+chrM	10399	.	G	A	157.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=26.31;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:186,18,0
+chrM	10820	.	G	A	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.60;QD=21.09;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chrM	10820	.	G	A	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.60;QD=21.09;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chrM	10874	.	C	T	159.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=55.50;QD=26.64;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:188,18,0
+chrM	10874	.	C	T	159.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=55.50;QD=26.64;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:188,18,0
+chrM	11018	.	C	T	88.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=54.58;QD=22.01;SOR=3.258	GT:AD:DP:GQ:PL	1/1:0,4:4:12:116,12,0
+chrM	11018	.	C	T	88.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=54.58;QD=22.01;SOR=3.258	GT:AD:DP:GQ:PL	1/1:0,4:4:12:116,12,0
+chrM	11720	.	A	G	90.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.76;QD=30.09;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:11720_A_G:118,9,0
+chrM	11720	.	A	G	90.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.76;QD=30.09;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:11720_A_G:118,9,0
+chrM	11723	.	C	T	90.28	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=30.97;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:11720_A_G:118,9,0
+chrM	11723	.	C	T	90.28	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=30.97;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:11720_A_G:118,9,0
+chrM	12706	.	T	C	152.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=25.47;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,6:6:18:181,18,0
+chrM	12706	.	T	C	152.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=25.47;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,6:6:18:181,18,0
+chrM	12851	.	G	A	65.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.76;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:93,9,0
+chrM	12851	.	G	A	65.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.76;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:93,9,0
+chrM	13327	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=51.79;QD=16.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chrM	13327	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=51.79;QD=16.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chrM	13681	.	C	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chrM	13681	.	C	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chrM	14213	.	C	T	35.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.33;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chrM	14213	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.33;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chrM	14581	.	G	A	66.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=59.34;QD=22.09;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:94,9,0
+chrM	14581	.	G	A	66.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=59.34;QD=22.09;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:94,9,0
+chrM	14767	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chrM	14767	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chrM	14832	.	G	A	129.90	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.74;QD=25.98;SOR=1.022	GT:AD:DP:GQ:PL	1/1:0,5:5:15:158,15,0
+chrM	14832	.	G	A	129.90	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.74;QD=25.98;SOR=1.022	GT:AD:DP:GQ:PL	1/1:0,5:5:15:158,15,0
+chrM	14873	.	C	T	99.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.44;QD=24.76;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,4:4:12:127,12,0
+chrM	14873	.	C	T	99.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.44;QD=24.76;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,4:4:12:127,12,0
+chrM	14906	.	A	G	62.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=51.07;QD=20.76;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:90,9,0
+chrM	14906	.	A	G	62.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=51.07;QD=20.76;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,3:3:9:90,9,0
+chrM	15302	.	A	G	89.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=22.26;SOR=1.609	GT:AD:DP:GQ:PL	1/1:0,4:4:12:117,12,0
+chrM	15302	.	A	G	89.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=22.26;SOR=1.609	GT:AD:DP:GQ:PL	1/1:0,4:4:12:117,12,0
+chrM	15933	.	C	T	65.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.76;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:93,9,0
+chrM	15933	.	C	T	65.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.76;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:93,9,0
+chrM	16024	.	G	A	73.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-7.920e-01;DP=7;ExcessHet=3.0103;FS=8.451;MLEAC=1;MLEAF=0.500;MQ=59.31;MQRankSum=0.792;QD=10.54;ReadPosRankSum=0.328;SOR=1.402	GT:AD:DP:GQ:PL	0/1:3,4:7:72:102,0,72
+chrM	16024	.	G	A	73.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-7.920e-01;DP=7;ExcessHet=3.0103;FS=8.451;MLEAC=1;MLEAF=0.500;MQ=59.31;MQRankSum=0.792;QD=10.54;ReadPosRankSum=0.328;SOR=1.402	GT:AD:DP:GQ:PL	0/1:3,4:7:72:102,0,72
+chr1	1328041	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr1	1328041	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr1	4558027	.	T	C	22.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=11.38;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:50,6,0
+chr1	4558027	.	T	C	22.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=11.38;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:50,6,0
+chr1	26645500	.	T	C	19.79	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=9.89;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:47,6,0
+chr1	26645500	.	T	C	19.79	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=9.89;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:47,6,0
+chr1	44101800	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr1	44101800	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr1	83624407	.	T	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:83624399_TC_T:90,6,0
+chr1	83624407	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:83624399_TC_T:90,6,0
+chr1	83625974	.	G	T	34.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr1	83625974	.	G	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr1	121484835	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.22;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121484835_A_T:90,6,0
+chr1	121484835	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.22;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121484835_A_T:90,6,0
+chr1	121484847	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.22;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121484835_A_T:90,6,0
+chr1	121484847	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.22;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121484835_A_T:90,6,0
+chr1	121484852	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484835_A_T:45,3,0
+chr1	121484852	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484835_A_T:45,3,0
+chr1	121484855	.	T	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484835_A_T:45,3,0
+chr1	121484855	.	T	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484835_A_T:45,3,0
+chr1	121484945	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484945_T_C:45,3,0
+chr1	121484945	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484945_T_C:45,3,0
+chr1	121484951	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484945_T_C:45,3,0
+chr1	121484951	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:121484945_T_C:45,3,0
+chr1	121485227	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.43;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121485227_A_T:90,6,0
+chr1	121485227	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.43;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121485227_A_T:90,6,0
+chr1	121485241	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.43;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121485227_A_T:90,6,0
+chr1	121485241	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.43;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121485227_A_T:90,6,0
+chr1	121485251	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.39;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121485227_A_T:90,6,0
+chr1	121485251	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.39;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:121485227_A_T:90,6,0
+chr1	154709948	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr1	154709948	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr1	154710016	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr1	154710016	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr1	167589943	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr1	167589943	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr1	198542032	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr1	198542032	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr2	36365804	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:36365804_G_A:90,6,0
+chr2	36365804	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:36365804_G_A:90,6,0
+chr2	36365806	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:36365804_G_A:90,6,0
+chr2	36365806	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:36365804_G_A:90,6,0
+chr2	90295906	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:90295906_G_C:90,6,0
+chr2	90295906	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:90295906_G_C:90,6,0
+chr2	90295922	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:90295906_G_C:90,6,0
+chr2	90295922	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:90295906_G_C:90,6,0
+chr2	92281327	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=45.19;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:92281327_G_T:90,6,0
+chr2	92281327	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=45.19;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:92281327_G_T:90,6,0
+chr2	92281333	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=45.19;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:92281327_G_T:90,6,0
+chr2	92281333	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=45.19;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:92281327_G_T:90,6,0
+chr2	92281355	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=45.19;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:92281327_G_T:90,6,0
+chr2	92281355	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=45.19;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:92281327_G_T:90,6,0
+chr2	92309553	.	C	A	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=27.24;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309553	.	C	A	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=27.24;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309558	.	T	G	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=28.20;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309558	.	T	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=28.20;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309574	.	C	G	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=25.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309574	.	C	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=25.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309576	.	T	G	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=29.56;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92309576	.	T	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=29.56;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:92309553_C_A:135,9,0
+chr2	92320445	.	T	C	34.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.46;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr2	92320445	.	T	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.46;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr3	67848083	.	G	A	37.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:65,6,0
+chr3	67848083	.	G	A	37.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:65,6,0
+chr3	75716546	.	G	T	59.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.09;QD=19.76;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:87,9,0
+chr3	75716546	.	G	T	59.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.09;QD=19.76;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:87,9,0
+chr3	75716560	.	C	T	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.09;QD=21.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chr3	75716560	.	C	T	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.09;QD=21.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chr3	75719549	.	G	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr3	75719549	.	G	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr3	75719569	.	G	C	23.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=11.88;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:51,6,0
+chr3	75719569	.	G	C	23.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=11.88;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:51,6,0
+chr3	75719582	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719582_A_C:90,6,0
+chr3	75719582	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719582_A_C:90,6,0
+chr3	75719583	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719582_A_C:90,6,0
+chr3	75719583	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719582_A_C:90,6,0
+chr3	75719588	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719582_A_C:90,6,0
+chr3	75719588	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719582_A_C:90,6,0
+chr3	75719619	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719619_G_T:90,6,0
+chr3	75719619	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719619_G_T:90,6,0
+chr3	75719627	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719619_G_T:90,6,0
+chr3	75719627	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:75719619_G_T:90,6,0
+chr3	136027145	.	A	G	24.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.38;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:52,6,0
+chr3	136027145	.	A	G	24.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.38;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:52,6,0
+chr3	163226856	.	A	G	20.78	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.39;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:48,6,0
+chr3	163226856	.	A	G	20.78	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.39;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:48,6,0
+chr3	196625663	.	G	T	32.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=30.69;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr3	196625663	.	G	T	32.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=30.69;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr3	196625750	.	A	T	88.89	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.42;QD=29.63;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:2:1|1:196625750_A_T:115,2,0
+chr3	196625750	.	A	T	88.89	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.42;QD=29.63;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:2:1|1:196625750_A_T:115,2,0
+chr3	196625765	.	A	T	88.89	SNP_FILTER	AC=2;AF=1.00;AN=2;BaseQRankSum=0.674;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.63;MQRankSum=0.674;QD=22.22;ReadPosRankSum=0.319;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:1,3:4:2:1|1:196625750_A_T:115,2,0
+chr3	196625765	.	A	T	88.89	PASS	AC=2;AF=1.00;AN=2;BaseQRankSum=0.674;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.63;MQRankSum=0.674;QD=22.22;ReadPosRankSum=0.319;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:1,3:4:2:1|1:196625750_A_T:115,2,0
+chr3	197119835	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr3	197119835	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	16562665	.	A	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	16562665	.	A	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	19922100	.	C	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr4	19922100	.	C	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr4	48105991	.	G	A	26.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=13.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:54,6,0
+chr4	48105991	.	G	A	26.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=13.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:54,6,0
+chr4	68410613	.	T	C	23.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=11.88;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:51,6,0
+chr4	68410613	.	T	C	23.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=11.88;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:51,6,0
+chr4	68423109	.	A	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	68423109	.	A	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	141875683	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr4	141875683	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr4	156417397	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	156417397	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	187824275	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	187824275	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr4	189107055	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:189107055_G_A:45,3,0
+chr4	189107055	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:189107055_G_A:45,3,0
+chr4	189107059	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:189107055_G_A:45,3,0
+chr4	189107059	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:189107055_G_A:45,3,0
+chr4	189854510	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:189854510_A_T:90,6,0
+chr4	189854510	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:189854510_A_T:90,6,0
+chr4	189854511	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:189854510_A_T:90,6,0
+chr4	189854511	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:189854510_A_T:90,6,0
+chr5	20842925	.	A	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr5	20842925	.	A	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr5	20842949	.	A	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr5	20842949	.	A	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr5	20845722	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr5	20845722	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr5	21482663	.	T	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:21482663_T_C:90,6,0
+chr5	21482663	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:21482663_T_C:90,6,0
+chr5	21482671	.	T	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:21482663_T_C:90,6,0
+chr5	21482671	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:21482663_T_C:90,6,0
+chr5	28704384	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr5	28704384	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr5	56083060	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr5	56083060	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr5	106077542	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr5	106077542	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr5	128097273	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr5	128097273	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr6	18208188	.	G	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr6	18208188	.	G	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr6	58776745	.	C	T	35.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.07;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr6	58776745	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.07;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr6	58777836	.	A	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=41.09;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr6	58777836	.	A	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=41.09;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr6	58777939	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=52.20;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr6	58777939	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=52.20;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr6	58778019	.	T	G	56.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.46;QD=28.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:58778019_T_G:84,6,0
+chr6	58778019	.	T	G	56.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.46;QD=28.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:58778019_T_G:84,6,0
+chr6	58778025	.	A	G	56.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.46;QD=28.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:58778019_T_G:84,6,0
+chr6	58778025	.	A	G	56.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.46;QD=28.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:58778019_T_G:84,6,0
+chr6	58778039	.	G	C	56.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.46;QD=28.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:58778019_T_G:84,6,0
+chr6	58778039	.	G	C	56.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=53.46;QD=28.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:58778019_T_G:84,6,0
+chr6	62200239	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr6	62200239	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr6	89597891	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr6	89597891	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr6	126015447	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr6	126015447	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr7	2509143	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=48.00;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr7	2509143	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=48.00;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr7	50132326	.	T	G	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr7	50132326	.	T	G	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr7	61822485	.	A	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.36;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr7	61822485	.	A	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.36;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr7	61822506	.	C	G	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.36;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr7	61822506	.	C	G	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.36;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr7	61969232	.	C	T	37.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.00;QD=18.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:65,6,0
+chr7	61969232	.	C	T	37.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.00;QD=18.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:65,6,0
+chr7	61969324	.	G	C	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chr7	61969324	.	G	C	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=21.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chr7	61969379	.	G	T	145.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=56.12;QD=24.31;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:174,18,0
+chr7	61969379	.	G	T	145.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=56.12;QD=24.31;SOR=1.329	GT:AD:DP:GQ:PL	1/1:0,6:6:18:174,18,0
+chr7	67362053	.	A	C	25.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:53,6,0
+chr7	67362053	.	A	C	25.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:53,6,0
+chr8	35779883	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr8	35779883	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr8	43794169	.	G	A	42.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=21.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:43794145_G_A:70,6,0
+chr8	43794169	.	G	A	42.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=21.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:43794145_G_A:70,6,0
+chr8	65069907	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr8	65069907	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr8	107208414	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr8	107208414	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr9	4217093	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr9	4217093	.	T	C	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr9	67320780	.	G	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:67320780_G_A:45,3,0
+chr9	67320780	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:67320780_G_A:45,3,0
+chr9	67320788	.	T	C	45.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=22.87;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320780_G_A:73,6,0
+chr9	67320788	.	T	C	45.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=22.87;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320780_G_A:73,6,0
+chr9	67320829	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320829	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320834	.	G	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320834	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320840	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320840	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320850	.	G	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320850	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320851	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320851	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320854	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	67320854	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.44;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:67320829_A_G:90,6,0
+chr9	69711073	.	G	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr9	69711073	.	G	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr10	29199945	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr10	29199945	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr10	38885961	.	T	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885961	.	T	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885976	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885976	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885978	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885978	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885996	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885996	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885997	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38885997	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38886006	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38886006	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38886018	.	G	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38886018	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38886023	.	A	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	38886023	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.36;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:38885961_T_A:90,6,0
+chr10	39107300	.	T	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:39107300_T_A:45,3,0
+chr10	39107300	.	T	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:39107300_T_A:45,3,0
+chr10	39107302	.	T	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:39107300_T_A:45,3,0
+chr10	39107302	.	T	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:39107300_T_A:45,3,0
+chr10	39107325	.	G	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:39107300_T_A:45,3,0
+chr10	39107325	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:39107300_T_A:45,3,0
+chr10	42385145	.	G	A	138.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.23;QD=28.17;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:12:1|1:42385145_G_A:166,12,0
+chr10	42385145	.	G	A	138.03	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.23;QD=28.17;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:12:1|1:42385145_G_A:166,12,0
+chr10	42385161	.	T	G	320.77	PASS	AC=2;AF=1.00;AN=2;DP=14;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.41;QD=32.08;SOR=1.085	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,10:10:30:1|1:42385145_G_A:349,30,0
+chr10	42385161	.	T	G	320.77	PASS	AC=2;AF=1.00;AN=2;DP=14;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.41;QD=32.08;SOR=1.085	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,10:10:30:1|1:42385145_G_A:349,30,0
+chr10	42385191	.	A	G	507.77	PASS	AC=2;AF=1.00;AN=2;DP=21;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=41.78;QD=31.74;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,16:16:48:536,48,0
+chr10	42385191	.	A	G	507.77	PASS	AC=2;AF=1.00;AN=2;DP=21;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=41.78;QD=31.74;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,16:16:48:536,48,0
+chr10	42385197	.	T	G	44.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.606e+00;DP=21;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=41.78;MQRankSum=1.89;QD=2.80;ReadPosRankSum=0.364;SOR=0.693	GT:AD:DP:GQ:PL	0/1:12,4:16:73:73,0,318
+chr10	42385197	.	T	G	44.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.606e+00;DP=21;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=41.78;MQRankSum=1.89;QD=2.80;ReadPosRankSum=0.364;SOR=0.693	GT:AD:DP:GQ:PL	0/1:12,4:16:73:73,0,318
+chr10	42385236	.	A	T	398.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.260e-01;DP=24;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.18;MQRankSum=0.954;QD=20.99;ReadPosRankSum=1.06;SOR=0.527	GT:AD:DP:GQ:PL	0/1:3,16:19:63:427,0,63
+chr10	42385236	.	A	T	398.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.260e-01;DP=24;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.18;MQRankSum=0.954;QD=20.99;ReadPosRankSum=1.06;SOR=0.527	GT:AD:DP:GQ:PL	0/1:3,16:19:63:427,0,63
+chr10	42385255	.	G	A	11.12	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=2.60;DP=20;ExcessHet=3.0103;FS=3.274;MLEAC=1;MLEAF=0.500;MQ=41.63;MQRankSum=-1.723e+00;QD=0.65;ReadPosRankSum=0.970;SOR=2.281	GT:AD:DP:GQ:PGT:PID:PL	0/1:15,2:17:39:0|1:42385255_G_A:39,0,624
+chr10	42385255	.	G	A	11.12	INDEL_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=2.60;DP=20;ExcessHet=3.0103;FS=3.274;MLEAC=1;MLEAF=0.500;MQ=41.63;MQRankSum=-1.723e+00;QD=0.65;ReadPosRankSum=0.970;SOR=2.281	GT:AD:DP:GQ:PGT:PID:PL	0/1:15,2:17:39:0|1:42385255_G_A:39,0,624
+chr10	42385257	.	A	G	11.12	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.840e+00;DP=20;ExcessHet=3.0103;FS=3.274;MLEAC=1;MLEAF=0.500;MQ=41.63;MQRankSum=-1.723e+00;QD=0.65;ReadPosRankSum=1.27;SOR=2.281	GT:AD:DP:GQ:PGT:PID:PL	0/1:15,2:17:39:0|1:42385255_G_A:39,0,624
+chr10	42385257	.	A	G	11.12	INDEL_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.840e+00;DP=20;ExcessHet=3.0103;FS=3.274;MLEAC=1;MLEAF=0.500;MQ=41.63;MQRankSum=-1.723e+00;QD=0.65;ReadPosRankSum=1.27;SOR=2.281	GT:AD:DP:GQ:PGT:PID:PL	0/1:15,2:17:39:0|1:42385255_G_A:39,0,624
+chr10	42386990	.	T	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=47.43;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr10	42386990	.	T	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=47.43;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr10	42387270	.	A	C	139.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.43;QD=26.80;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:12:1|1:42387270_A_C:167,12,0
+chr10	42387270	.	A	C	139.03	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.43;QD=26.80;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:12:1|1:42387270_A_C:167,12,0
+chr10	42387277	.	G	A	139.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.36;QD=34.76;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:42387270_A_C:167,12,0
+chr10	42387277	.	G	A	139.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.36;QD=34.76;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:42387270_A_C:167,12,0
+chr10	42388020	.	A	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.55;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42388020_A_C:90,6,0
+chr10	42388020	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.55;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42388020_A_C:90,6,0
+chr10	42388034	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.55;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42388020_A_C:90,6,0
+chr10	42388034	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.55;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42388020_A_C:90,6,0
+chr10	42388072	.	A	G	31.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.55;QD=15.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr10	42388072	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.55;QD=15.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr10	42388393	.	G	A	33.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=30.59;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr10	42388393	.	G	A	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=30.59;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr10	42396143	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=22.51;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42396143_A_G:90,6,0
+chr10	42396143	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=22.51;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42396143_A_G:90,6,0
+chr10	42396152	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=22.51;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42396143_A_G:90,6,0
+chr10	42396152	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=22.51;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:42396143_A_G:90,6,0
+chr10	42400415	.	C	A	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.47;QD=26.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:42400415_C_A:135,9,0
+chr10	42400415	.	C	A	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.47;QD=26.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:42400415_C_A:135,9,0
+chr10	42400416	.	A	G	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.47;QD=30.02;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:42400415_C_A:135,9,0
+chr10	42400416	.	A	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.47;QD=30.02;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:42400415_C_A:135,9,0
+chr10	42400424	.	A	C	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.47;QD=31.98;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:42400415_C_A:135,9,0
+chr10	42400424	.	A	C	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.47;QD=31.98;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:42400415_C_A:135,9,0
+chr10	42400448	.	C	A	94.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=0.00;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=23.86;MQRankSum=-3.190e-01;QD=23.69;ReadPosRankSum=1.15;SOR=0.446	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,3:4:47:0|1:42400415_C_A:123,0,47
+chr10	42400448	.	C	A	94.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.00;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=23.86;MQRankSum=-3.190e-01;QD=23.69;ReadPosRankSum=1.15;SOR=0.446	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,3:4:47:0|1:42400415_C_A:123,0,47
+chr10	42400455	.	T	G	94.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.150e+00;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=23.86;MQRankSum=-3.190e-01;QD=23.69;ReadPosRankSum=1.15;SOR=0.446	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,3:4:47:0|1:42400415_C_A:123,0,47
+chr10	42400455	.	T	G	94.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.150e+00;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=23.86;MQRankSum=-3.190e-01;QD=23.69;ReadPosRankSum=1.15;SOR=0.446	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,3:4:47:0|1:42400415_C_A:123,0,47
+chr10	42596910	.	A	T	87.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.21;QD=21.76;SOR=1.609	GT:AD:DP:GQ:PL	1/1:0,4:4:12:115,12,0
+chr10	42596910	.	A	T	87.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.21;QD=21.76;SOR=1.609	GT:AD:DP:GQ:PL	1/1:0,4:4:12:115,12,0
+chr10	42596958	.	T	C	196.90	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.21;QD=27.51;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:15:1|1:42596958_T_C:225,15,0
+chr10	42596958	.	T	C	196.90	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=35.21;QD=27.51;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:15:1|1:42596958_T_C:225,15,0
+chr10	42596966	.	C	A	196.90	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.06;QD=29.11;SOR=1.981	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,5:5:15:1|1:42596958_T_C:225,15,0
+chr10	42596966	.	C	A	196.90	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.06;QD=29.11;SOR=1.981	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,5:5:15:1|1:42596958_T_C:225,15,0
+chr10	42596975	.	A	T	178.78	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.383e+00;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=32.72;MQRankSum=0.674;QD=29.80;ReadPosRankSum=1.38;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,5:6:27:0|1:42596958_T_C:207,0,27
+chr10	42596975	.	A	T	178.78	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.383e+00;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=32.72;MQRankSum=0.674;QD=29.80;ReadPosRankSum=1.38;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,5:6:27:0|1:42596958_T_C:207,0,27
+chr10	42596983	.	T	C	178.78	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.383e+00;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=32.72;MQRankSum=0.674;QD=29.80;ReadPosRankSum=0.674;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,5:6:27:0|1:42596958_T_C:207,0,27
+chr10	42596983	.	T	C	178.78	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.383e+00;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=32.72;MQRankSum=0.674;QD=29.80;ReadPosRankSum=0.674;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,5:6:27:0|1:42596958_T_C:207,0,27
+chr10	42596993	.	T	A	136.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=27.05;MQRankSum=0.967;QD=28.08;ReadPosRankSum=0.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:30:0|1:42596958_T_C:165,0,30
+chr10	42596993	.	T	A	136.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=27.05;MQRankSum=0.967;QD=28.08;ReadPosRankSum=0.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:30:0|1:42596958_T_C:165,0,30
+chr10	42596994	.	C	A	136.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=27.05;MQRankSum=0.967;QD=23.23;ReadPosRankSum=0.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:30:0|1:42596958_T_C:165,0,30
+chr10	42596994	.	C	A	136.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=27.05;MQRankSum=0.967;QD=23.23;ReadPosRankSum=0.00;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:30:0|1:42596958_T_C:165,0,30
+chr10	42597006	.	G	T	47.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=27.07;QD=23.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:75,6,0
+chr10	42597006	.	G	T	47.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=27.07;QD=23.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:75,6,0
+chr10	42597028	.	A	T	33.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=0.674;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.94;MQRankSum=0.674;QD=16.88;ReadPosRankSum=0.674;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,1:2:60:0|1:42596958_T_C:62,0,60
+chr10	42597028	.	A	T	33.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.674;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.94;MQRankSum=0.674;QD=16.88;ReadPosRankSum=0.674;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,1:2:60:0|1:42596958_T_C:62,0,60
+chr10	42597034	.	T	C	33.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.383e+00;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.38;MQRankSum=0.674;QD=8.44;ReadPosRankSum=0.00;SOR=0.105	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:60:0|1:42596958_T_C:62,0,60
+chr10	42597034	.	T	C	33.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-1.383e+00;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.38;MQRankSum=0.674;QD=8.44;ReadPosRankSum=0.00;SOR=0.105	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:60:0|1:42596958_T_C:62,0,60
+chr10	42597039	.	T	C	33.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-6.740e-01;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.38;MQRankSum=0.674;QD=8.44;ReadPosRankSum=0.00;SOR=0.105	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:60:0|1:42596958_T_C:62,0,60
+chr10	42597039	.	T	C	33.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-6.740e-01;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.38;MQRankSum=0.674;QD=8.44;ReadPosRankSum=0.00;SOR=0.105	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:60:0|1:42596958_T_C:62,0,60
+chr10	42597040	.	C	A	33.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=1.38;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.38;MQRankSum=0.674;QD=8.44;ReadPosRankSum=0.00;SOR=0.105	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:60:0|1:42596958_T_C:62,0,60
+chr10	42597040	.	C	A	33.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=1.38;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=24.38;MQRankSum=0.674;QD=8.44;ReadPosRankSum=0.00;SOR=0.105	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:60:0|1:42596958_T_C:62,0,60
+chr10	42597106	.	A	G	162.84	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.11;QD=27.14;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,6:6:18:191,18,0
+chr10	42597106	.	A	G	162.84	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.11;QD=27.14;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,6:6:18:191,18,0
+chr10	42599603	.	A	G	194.78	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.83;QD=24.35;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,8:8:24:223,24,0
+chr10	42599603	.	A	G	194.78	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.83;QD=24.35;SOR=1.179	GT:AD:DP:GQ:PL	1/1:0,8:8:24:223,24,0
+chr10	42599664	.	C	T	242.80	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.92;QD=34.69;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,7:7:21:1|1:42599664_C_T:271,21,0
+chr10	42599664	.	C	T	242.80	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.92;QD=34.69;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,7:7:21:1|1:42599664_C_T:271,21,0
+chr10	42599680	.	C	A	152.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.44;QD=29.03;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:42599664_C_T:180,12,0
+chr10	42599680	.	C	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.44;QD=29.03;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:42599664_C_T:180,12,0
+chr10	42599702	.	T	A	152.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.47;QD=30.67;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:12:1|1:42599664_C_T:180,12,0
+chr10	42599702	.	T	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.47;QD=30.67;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:12:1|1:42599664_C_T:180,12,0
+chr10	42599708	.	G	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:42599664_C_T:45,3,0
+chr10	42599708	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:42599664_C_T:45,3,0
+chr10	42599717	.	T	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:42599664_C_T:45,3,0
+chr10	42599717	.	T	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:42599664_C_T:45,3,0
+chr10	42599933	.	T	C	92.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.26;QD=23.01;SOR=3.258	GT:AD:DP:GQ:PL	1/1:0,4:4:12:120,12,0
+chr10	42599933	.	T	C	92.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.26;QD=23.01;SOR=3.258	GT:AD:DP:GQ:PL	1/1:0,4:4:12:120,12,0
+chr10	94061431	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr10	94061431	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr10	126958856	.	C	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr10	126958856	.	C	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr11	36300835	.	C	T	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr11	36300835	.	C	T	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr11	51579500	.	T	G	152.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.46;QD=26.61;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:51579500_T_G:180,12,0
+chr11	51579500	.	T	G	152.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.46;QD=26.61;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:51579500_T_G:180,12,0
+chr11	51579501	.	G	A	152.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.46;QD=29.20;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:51579500_T_G:180,12,0
+chr11	51579501	.	G	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.46;QD=29.20;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:51579500_T_G:180,12,0
+chr11	51579519	.	A	C	241.84	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.34;QD=28.55;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,6:6:18:1|1:51579500_T_G:270,18,0
+chr11	51579519	.	A	C	241.84	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.34;QD=28.55;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,6:6:18:1|1:51579500_T_G:270,18,0
+chr11	51579523	.	C	A	241.84	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.34;QD=34.42;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,6:6:18:1|1:51579500_T_G:270,18,0
+chr11	51579523	.	C	A	241.84	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.34;QD=34.42;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,6:6:18:1|1:51579500_T_G:270,18,0
+chr11	51579531	.	A	T	286.80	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.34;QD=28.53;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,6:6:21:1|1:51579500_T_G:315,21,0
+chr11	51579531	.	A	T	286.80	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.34;QD=28.53;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,6:6:21:1|1:51579500_T_G:315,21,0
+chr11	51579554	.	T	C	286.80	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=9;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.01;QD=27.23;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,7:7:21:1|1:51579500_T_G:315,21,0
+chr11	51579554	.	T	C	286.80	PASS	AC=2;AF=1.00;AN=2;DP=9;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.01;QD=27.23;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,7:7:21:1|1:51579500_T_G:315,21,0
+chr11	51579562	.	G	C	331.78	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=10;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.22;QD=29.52;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,7:7:24:1|1:51579500_T_G:360,24,0
+chr11	51579562	.	G	C	331.78	PASS	AC=2;AF=1.00;AN=2;DP=10;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.22;QD=29.52;SOR=0.941	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,7:7:24:1|1:51579500_T_G:360,24,0
+chr11	51579573	.	G	T	331.78	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=33.47;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579573	.	G	T	331.78	PASS	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=33.47;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579583	.	A	C	331.78	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=32.91;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579583	.	A	C	331.78	PASS	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=32.91;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579588	.	A	T	331.78	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=31.31;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579588	.	A	T	331.78	PASS	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=31.31;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579594	.	C	T	331.78	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=31.45;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579594	.	C	T	331.78	PASS	AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.48;QD=31.45;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,8:8:24:1|1:51579500_T_G:360,24,0
+chr11	51579658	.	T	C	72.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.16;QD=24.09;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:51579658_T_C:100,9,0
+chr11	51579658	.	T	C	72.28	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=28.16;QD=24.09;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:51579658_T_C:100,9,0
+chr11	51579680	.	G	T	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=30.41;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:51579658_T_C:45,3,0
+chr11	51579680	.	G	T	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=30.41;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:51579658_T_C:45,3,0
+chr11	51582946	.	G	C	63.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.03;QD=21.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chr11	51582946	.	G	C	63.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.03;QD=21.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:91,9,0
+chr11	81302519	.	T	C	24.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.38;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:52,6,0
+chr11	81302519	.	T	C	24.76	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.38;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:52,6,0
+chr11	81302554	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr11	81302554	.	G	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr11	127058947	.	T	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr11	127058947	.	T	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr11	127058965	.	A	G	20.78	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.39;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:48,6,0
+chr11	127058965	.	A	G	20.78	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.39;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:48,6,0
+chr12	675847	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr12	675847	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr12	1040373	.	T	C	25.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:53,6,0
+chr12	1040373	.	T	C	25.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:53,6,0
+chr12	40742689	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr12	40742689	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr12	104991473	.	A	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr12	104991473	.	A	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr13	113533365	.	A	G	30.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:58,6,0
+chr13	113533365	.	A	G	30.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:58,6,0
+chr14	53063270	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr14	53063270	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr14	55944365	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:55944365_G_C:90,6,0
+chr14	55944365	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:55944365_G_C:90,6,0
+chr14	55944375	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:55944365_G_C:90,6,0
+chr14	55944375	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:55944365_G_C:90,6,0
+chr15	23245086	.	C	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr15	23245086	.	C	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr16	16175824	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr16	16175824	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr16	46387977	.	T	G	27.75	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.95;QD=13.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr16	46387977	.	T	G	27.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.95;QD=13.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr16	46388360	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46388360_C_A:90,6,0
+chr16	46388360	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46388360_C_A:90,6,0
+chr16	46388382	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46388360_C_A:90,6,0
+chr16	46388382	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46388360_C_A:90,6,0
+chr16	46388407	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46388360_C_A:90,6,0
+chr16	46388407	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46388360_C_A:90,6,0
+chr16	46400108	.	C	G	29.75	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.55;QD=14.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:57,6,0
+chr16	46400108	.	C	G	29.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.55;QD=14.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:57,6,0
+chr16	46406207	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46406207_A_T:90,6,0
+chr16	46406207	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46406207_A_T:90,6,0
+chr16	46406219	.	C	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46406207_A_T:90,6,0
+chr16	46406219	.	C	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46406207_A_T:90,6,0
+chr16	46406281	.	T	C	27.75	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=13.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr16	46406281	.	T	C	27.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.00;QD=13.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr16	46407937	.	G	T	58.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.01;QD=19.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:86,9,0
+chr16	46407937	.	G	T	58.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.01;QD=19.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:86,9,0
+chr16	46410823	.	A	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr16	46410823	.	A	C	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr16	46417096	.	A	G	52.79	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=4.771;MLEAC=1;MLEAF=0.500;MQ=23.80;MQRankSum=-9.670e-01;QD=17.60;ReadPosRankSum=-9.670e-01;SOR=2.225	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:23:0|1:46417096_A_G:81,0,23
+chr16	46417096	.	A	G	52.79	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=4.771;MLEAC=1;MLEAF=0.500;MQ=23.80;MQRankSum=-9.670e-01;QD=17.60;ReadPosRankSum=-9.670e-01;SOR=2.225	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:23:0|1:46417096_A_G:81,0,23
+chr16	46417115	.	C	T	46.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=0.674;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=23.14;MQRankSum=-1.383e+00;QD=11.69;ReadPosRankSum=1.38;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:75:0|1:46417096_A_G:75,0,87
+chr16	46417115	.	C	T	46.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.674;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=23.14;MQRankSum=-1.383e+00;QD=11.69;ReadPosRankSum=1.38;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	0/1:2,2:4:75:0|1:46417096_A_G:75,0,87
+chr16	46417127	.	T	A	46.77	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=0.00;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.72;MQRankSum=-1.645e+00;QD=9.35;ReadPosRankSum=1.65;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	0/1:3,2:5:75:0|1:46417096_A_G:75,0,87
+chr16	46417127	.	T	A	46.77	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.00;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.72;MQRankSum=-1.645e+00;QD=9.35;ReadPosRankSum=1.65;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	0/1:3,2:5:75:0|1:46417096_A_G:75,0,87
+chr16	46417157	.	T	C	168.77	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.72;QD=33.27;SOR=1.981	GT:AD:DP:GQ:PL	1/1:0,2:5:12:131,12,0
+chr16	46417157	.	T	C	168.77	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.72;QD=33.27;SOR=1.981	GT:AD:DP:GQ:PL	1/1:0,2:5:12:131,12,0
+chr16	46417176	.	G	T	152.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=20.51;QD=31.26;SOR=3.258	GT:AD:DP:GQ:PL	1/1:0,4:4:12:180,12,0
+chr16	46417176	.	G	T	152.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=20.51;QD=31.26;SOR=3.258	GT:AD:DP:GQ:PL	1/1:0,4:4:12:180,12,0
+chr16	46417184	.	G	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=21.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46417184_G_A:90,6,0
+chr16	46417184	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=21.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46417184_G_A:90,6,0
+chr16	46417186	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=21.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46417184_G_A:90,6,0
+chr16	46417186	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=21.00;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46417184_G_A:90,6,0
+chr16	46420035	.	C	T	27.75	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.62;QD=13.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr16	46420035	.	C	T	27.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.62;QD=13.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr16	46420566	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.54;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46420566_C_A:90,6,0
+chr16	46420566	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.54;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46420566_C_A:90,6,0
+chr16	46420578	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.54;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46420566_C_A:90,6,0
+chr16	46420578	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.54;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46420566_C_A:90,6,0
+chr16	46421056	.	A	T	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.46;QD=27.76;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:46421056_A_T:135,9,0
+chr16	46421056	.	A	T	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.46;QD=27.76;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:46421056_A_T:135,9,0
+chr16	46421060	.	A	T	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.46;QD=29.09;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:46421056_A_T:135,9,0
+chr16	46421060	.	A	T	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.46;QD=29.09;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:46421056_A_T:135,9,0
+chr16	46421061	.	A	T	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.46;QD=26.08;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:46421056_A_T:135,9,0
+chr16	46421061	.	A	T	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.46;QD=26.08;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:46421056_A_T:135,9,0
+chr16	46421087	.	A	T	94.81	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=37.81;MQRankSum=-4.310e-01;QD=31.60;ReadPosRankSum=0.967;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:20:0|1:46421056_A_T:123,0,20
+chr16	46421087	.	A	T	94.81	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=37.81;MQRankSum=-4.310e-01;QD=31.60;ReadPosRankSum=0.967;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	0/1:1,2:3:20:0|1:46421056_A_T:123,0,20
+chr16	46421143	.	A	G	156.84	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.49;QD=26.14;SOR=3.912	GT:AD:DP:GQ:PL	1/1:0,6:6:18:185,18,0
+chr16	46421143	.	A	G	156.84	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.49;QD=26.14;SOR=3.912	GT:AD:DP:GQ:PL	1/1:0,6:6:18:185,18,0
+chr16	46421264	.	A	G	33.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.01;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr16	46421264	.	A	G	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=38.01;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr16	46421388	.	C	G	61.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.67;QD=20.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:89,9,0
+chr16	46421388	.	C	G	61.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.67;QD=20.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:89,9,0
+chr16	46421941	.	A	C	20.80	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-6.740e-01;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.00;MQRankSum=0.00;QD=5.20;ReadPosRankSum=-1.383e+00;SOR=0.693	GT:AD:DP:GQ:PL	0/1:2,2:4:49:49,0,51
+chr16	46421941	.	A	C	20.80	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-6.740e-01;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.00;MQRankSum=0.00;QD=5.20;ReadPosRankSum=-1.383e+00;SOR=0.693	GT:AD:DP:GQ:PL	0/1:2,2:4:49:49,0,51
+chr16	46421978	.	G	A	24.82	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.967;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.00;MQRankSum=0.00;QD=8.27;ReadPosRankSum=-9.670e-01;SOR=1.179	GT:AD:DP:GQ:PL	0/1:1,2:3:20:53,0,20
+chr16	46421978	.	G	A	24.82	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.967;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.00;MQRankSum=0.00;QD=8.27;ReadPosRankSum=-9.670e-01;SOR=1.179	GT:AD:DP:GQ:PL	0/1:1,2:3:20:53,0,20
+chr16	46421999	.	A	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr16	46421999	.	A	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr16	46422884	.	A	G	19.84	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=41.78;MQRankSum=-9.670e-01;QD=6.61;ReadPosRankSum=-9.670e-01;SOR=1.179	GT:AD:DP:GQ:PL	0/1:1,2:3:22:48,0,22
+chr16	46422884	.	A	G	19.84	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=41.78;MQRankSum=-9.670e-01;QD=6.61;ReadPosRankSum=-9.670e-01;SOR=1.179	GT:AD:DP:GQ:PL	0/1:1,2:3:22:48,0,22
+chr16	46423151	.	T	A	43.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.19;QD=21.87;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46423151_T_A:71,6,0
+chr16	46423151	.	T	A	43.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.19;QD=21.87;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46423151_T_A:71,6,0
+chr16	46423157	.	A	G	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=27.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:46423151_T_A:45,3,0
+chr16	46423157	.	A	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=27.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:46423151_T_A:45,3,0
+chr16	46423600	.	G	T	16.86	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=0.253;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=38.70;MQRankSum=0.524;QD=3.37;ReadPosRankSum=0.00;SOR=0.446	GT:AD:DP:GQ:PL	0/1:3,2:5:45:45,0,75
+chr16	46423600	.	G	T	16.86	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.253;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=38.70;MQRankSum=0.524;QD=3.37;ReadPosRankSum=0.00;SOR=0.446	GT:AD:DP:GQ:PL	0/1:3,2:5:45:45,0,75
+chr16	46423641	.	G	A	17.84	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=1.38;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=39.75;MQRankSum=-6.740e-01;QD=4.46;ReadPosRankSum=0.431;SOR=0.693	GT:AD:DP:GQ:PL	0/1:2,2:4:45:46,0,45
+chr16	46423641	.	G	A	17.84	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=1.38;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=39.75;MQRankSum=-6.740e-01;QD=4.46;ReadPosRankSum=0.431;SOR=0.693	GT:AD:DP:GQ:PL	0/1:2,2:4:45:46,0,45
+chr16	46423886	.	C	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr16	46423886	.	C	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr16	46424286	.	A	T	51.82	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.00;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.00;MQRankSum=0.00;QD=12.96;ReadPosRankSum=-3.190e-01;SOR=1.609	GT:AD:DP:GQ:PL	0/1:1,3:4:19:80,0,19
+chr16	46424286	.	A	T	51.82	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.00;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=40.00;MQRankSum=0.00;QD=12.96;ReadPosRankSum=-3.190e-01;SOR=1.609	GT:AD:DP:GQ:PL	0/1:1,3:4:19:80,0,19
+chr16	46424435	.	C	T	20.97	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=0.967;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=38.71;MQRankSum=-4.310e-01;QD=6.99;ReadPosRankSum=-9.670e-01;SOR=1.179	GT:AD:DP:GQ:PL	0/1:1,2:3:14:49,0,14
+chr16	46424435	.	C	T	20.97	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=0.967;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=38.71;MQRankSum=-4.310e-01;QD=6.99;ReadPosRankSum=-9.670e-01;SOR=1.179	GT:AD:DP:GQ:PL	0/1:1,2:3:14:49,0,14
+chr16	46424620	.	T	A	28.75	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=27.66;QD=14.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:56,6,0
+chr16	46424620	.	T	A	28.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=27.66;QD=14.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:56,6,0
+chr16	46426199	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46426199_C_A:90,6,0
+chr16	46426199	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46426199_C_A:90,6,0
+chr16	46426211	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46426199_C_A:90,6,0
+chr16	46426211	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46426199_C_A:90,6,0
+chr16	46427556	.	C	G	25.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:53,6,0
+chr16	46427556	.	C	G	25.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=12.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:53,6,0
+chr16	46428494	.	G	C	54.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.17;QD=18.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:82,9,0
+chr16	46428494	.	G	C	54.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=23.17;QD=18.09;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:82,9,0
+chr16	46429833	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.57;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46429833_G_C:90,6,0
+chr16	46429833	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.57;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46429833_G_C:90,6,0
+chr16	46429854	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.57;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46429833_G_C:90,6,0
+chr16	46429854	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.57;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46429833_G_C:90,6,0
+chr16	46429855	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.57;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46429833_G_C:90,6,0
+chr16	46429855	.	T	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.57;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:46429833_G_C:90,6,0
+chr16	46433338	.	C	T	36.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr16	46433338	.	C	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr16	46433801	.	T	A	35.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr16	46433801	.	T	A	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.67;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr16	46435394	.	A	C	43.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.67;QD=14.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:71,9,0
+chr16	46435394	.	A	C	43.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.67;QD=14.43;SOR=2.833	GT:AD:DP:GQ:PL	1/1:0,3:3:9:71,9,0
+chr16	52262091	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr16	52262091	.	T	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr17	6773699	.	A	C	29.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=14.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:57,6,0
+chr17	6773699	.	A	C	29.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=14.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:57,6,0
+chr17	12942466	.	T	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr17	12942466	.	T	C	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr17	22252211	.	A	C	92.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.72;QD=30.76;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252211_A_C:120,9,0
+chr17	22252211	.	A	C	92.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.72;QD=30.76;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252211_A_C:120,9,0
+chr17	22252214	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.51;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:22252211_A_C:90,6,0
+chr17	22252214	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.51;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:22252211_A_C:90,6,0
+chr17	22252242	.	T	G	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.34;QD=33.85;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252242_T_G:135,9,0
+chr17	22252242	.	T	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.34;QD=33.85;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252242_T_G:135,9,0
+chr17	22252248	.	T	A	107.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.34;QD=27.08;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252242_T_G:135,9,0
+chr17	22252248	.	T	A	107.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.34;QD=27.08;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252242_T_G:135,9,0
+chr17	22252284	.	T	A	91.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.34;QD=30.43;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252284_T_A:119,9,0
+chr17	22252284	.	T	A	91.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.34;QD=30.43;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:22252284_T_A:119,9,0
+chr17	22252290	.	T	C	91.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.51;QD=25.42;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:22252284_T_A:119,9,0
+chr17	22252290	.	T	C	91.28	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.51;QD=25.42;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:22252284_T_A:119,9,0
+chr17	22252291	.	T	C	91.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.51;QD=27.65;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:22252284_T_A:119,9,0
+chr17	22252291	.	T	C	91.28	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=24.51;QD=27.65;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:22252284_T_A:119,9,0
+chr17	22261620	.	A	C	33.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.71;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr17	22261620	.	A	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.71;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr17	41382301	.	G	C	27.75	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.74;QD=13.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr17	41382301	.	G	C	27.75	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=29.74;QD=13.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:55,6,0
+chr17	41382336	.	G	A	95.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.30;QD=31.76;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:41382336_G_A:123,9,0
+chr17	41382336	.	G	A	95.28	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=42.30;QD=31.76;SOR=1.179	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:41382336_G_A:123,9,0
+chr17	41382352	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.72;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41382336_G_A:90,6,0
+chr17	41382352	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.72;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41382336_G_A:90,6,0
+chr17	41382361	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.72;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41382336_G_A:90,6,0
+chr17	41382361	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=44.72;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41382336_G_A:90,6,0
+chr17	41382378	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=29.48;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:6:1|1:41382336_G_A:90,6,0
+chr17	41382378	.	T	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=29.48;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:6:1|1:41382336_G_A:90,6,0
+chr17	41382390	.	A	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41382336_G_A:45,3,0
+chr17	41382390	.	A	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41382336_G_A:45,3,0
+chr17	41466417	.	A	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466417_A_G:45,3,0
+chr17	41466417	.	A	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466417_A_G:45,3,0
+chr17	41466419	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466417_A_G:45,3,0
+chr17	41466419	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466417_A_G:45,3,0
+chr17	41466421	.	C	T	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466417_A_G:45,3,0
+chr17	41466421	.	C	T	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466417_A_G:45,3,0
+chr17	41466445	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466445_G_A:45,3,0
+chr17	41466445	.	G	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466445_G_A:45,3,0
+chr17	41466446	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466445_G_A:45,3,0
+chr17	41466446	.	T	C	18.59	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=49.84;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:41466445_G_A:45,3,0
+chr17	41466652	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466652	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466655	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466655	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466658	.	C	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466658	.	C	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466660	.	T	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466660	.	T	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466661	.	G	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466661	.	G	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466652_G_C:90,6,0
+chr17	41466672	.	A	G	32.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr17	41466672	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=16.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chr17	41466688	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466688_G_C:90,6,0
+chr17	41466688	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466688_G_C:90,6,0
+chr17	41466694	.	A	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466688_G_C:90,6,0
+chr17	41466694	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.50;QD=31.37;SOR=0.693	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:41466688_G_C:90,6,0
+chr18	18511823	.	C	T	35.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr18	18511823	.	C	T	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr18	18511842	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18511842_A_G:90,6,0
+chr18	18511842	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18511842_A_G:90,6,0
+chr18	18511844	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18511842_A_G:90,6,0
+chr18	18511844	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18511842_A_G:90,6,0
+chr18	18511868	.	C	T	34.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr18	18511868	.	C	T	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chr18	18511880	.	C	A	33.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr18	18511880	.	C	A	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr18	18511899	.	T	G	30.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=15.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:58,6,0
+chr18	18511899	.	T	G	30.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.25;QD=15.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:58,6,0
+chr18	18518118	.	A	G	72.98	SNP_FILTER	AC=1;AF=0.500;AN=2;BaseQRankSum=1.28;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=39.24;MQRankSum=0.00;QD=14.60;ReadPosRankSum=-1.282e+00;SOR=0.693	GT:AD:DP:GQ:PL	0/1:1,4:5:13:101,0,13
+chr18	18518118	.	A	G	72.98	PASS	AC=1;AF=0.500;AN=2;BaseQRankSum=1.28;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=39.24;MQRankSum=0.00;QD=14.60;ReadPosRankSum=-1.282e+00;SOR=0.693	GT:AD:DP:GQ:PL	0/1:1,4:5:13:101,0,13
+chr18	18518157	.	A	T	123.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.51;QD=30.76;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518157_A_T:151,12,0
+chr18	18518157	.	A	T	123.03	PASS	AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.51;QD=30.76;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518157_A_T:151,12,0
+chr18	18518165	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.05;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518165	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=33.05;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518179	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518179	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518181	.	A	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518181	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518190	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518190	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518202	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518202	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518211	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518211	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518213	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518213	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.89;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518157_A_T:90,6,0
+chr18	18518897	.	A	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=41.85;QD=30.56;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:18518897_A_G:135,9,0
+chr18	18518897	.	A	G	107.28	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=41.85;QD=30.56;SOR=2.833	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,3:3:9:1|1:18518897_A_G:135,9,0
+chr18	18518908	.	A	G	152.03	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.16;QD=33.63;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518897_A_G:180,12,0
+chr18	18518908	.	A	G	152.03	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.16;QD=33.63;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518897_A_G:180,12,0
+chr18	18518912	.	C	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.16;QD=30.55;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518897_A_G:180,12,0
+chr18	18518912	.	C	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.16;QD=30.55;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518897_A_G:180,12,0
+chr18	18518933	.	T	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.16;QD=32.62;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518897_A_G:180,12,0
+chr18	18518933	.	T	A	152.03	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.16;QD=32.62;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518897_A_G:180,12,0
+chr18	18518959	.	T	G	111.03	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.07;QD=27.76;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518959_T_G:139,12,0
+chr18	18518959	.	T	G	111.03	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.07;QD=27.76;SOR=3.258	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,4:4:12:1|1:18518959_T_G:139,12,0
+chr18	18518972	.	G	C	87.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.00;QD=29.33;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:18518959_T_G:115,9,0
+chr18	18518972	.	G	C	87.28	PASS	AC=2;AF=1.00;AN=2;DP=7;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=32.00;QD=29.33;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:18518959_T_G:115,9,0
+chr18	18518973	.	A	C	87.28	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=35.36;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:18518959_T_G:115,9,0
+chr18	18518973	.	A	C	87.28	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=35.36;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:9:1|1:18518959_T_G:115,9,0
+chr18	18518981	.	A	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18518981	.	A	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18518998	.	C	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18518998	.	C	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519002	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519002	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519006	.	A	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519006	.	A	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=8;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=31.87;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519010	.	C	A	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519010	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519021	.	A	G	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	18519021	.	A	G	62.74	PASS	AC=2;AF=1.00;AN=2;DP=6;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=34.53;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:18518959_T_G:90,6,0
+chr18	61790884	.	A	G	17.81	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=8.91;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:45,6,0
+chr18	61790884	.	A	G	17.81	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=8.91;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:45,6,0
+chr20	7585666	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr20	7585666	.	A	G	31.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=15.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:59,6,0
+chr20	62102403	.	A	G	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr20	62102403	.	A	G	35.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:63,6,0
+chr21	9458006	.	G	A	48.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=24.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:9457995_GA_G:76,6,0
+chr21	9458006	.	G	A	48.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=24.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:9457995_GA_G:76,6,0
+chr21	18535049	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr21	18535049	.	G	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chr21	30309552	.	T	C	21.77	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:49,6,0
+chr21	30309552	.	T	C	21.77	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.88;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:49,6,0
+chrX	81113740	.	C	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrX	81113740	.	C	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrX	115357973	.	T	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrX	115357973	.	T	A	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrY	13449278	.	C	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chrY	13449278	.	C	G	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chrY	13833349	.	A	G	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.77;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:13833349_A_G:45,3,0
+chrY	13833349	.	A	G	18.59	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.77;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:13833349_A_G:45,3,0
+chrY	13833354	.	C	A	18.59	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.77;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:13833349_A_G:45,3,0
+chrY	13833354	.	C	A	18.59	PASS	AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=36.77;QD=18.59;SOR=1.609	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,1:1:3:1|1:13833349_A_G:45,3,0
+chr4_gl000193_random	139788	.	A	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chr4_gl000193_random	139788	.	A	C	33.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=16.87;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:61,6,0
+chrUn_gl000219	108398	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chrUn_gl000219	108398	.	G	A	34.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=17.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:62,6,0
+chrUn_gl000220	140745	.	C	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrUn_gl000220	140745	.	C	T	36.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=18.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:64,6,0
+chrUn_gl000220	144645	.	C	A	96.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=24.01;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,4:4:12:124,12,0
+chrUn_gl000220	144645	.	C	A	96.03	PASS	AC=2;AF=1.00;AN=2;DP=4;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=24.01;SOR=0.693	GT:AD:DP:GQ:PL	1/1:0,4:4:12:124,12,0
+chrUn_gl000225	50891	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50891_G_T:90,6,0
+chrUn_gl000225	50891	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50891_G_T:90,6,0
+chrUn_gl000225	50906	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50891_G_T:90,6,0
+chrUn_gl000225	50906	.	G	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50891_G_T:90,6,0
+chrUn_gl000225	50952	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50952_C_A:90,6,0
+chrUn_gl000225	50952	.	C	A	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50952_C_A:90,6,0
+chrUn_gl000225	50953	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50952_C_A:90,6,0
+chrUn_gl000225	50953	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50952_C_A:90,6,0
+chrUn_gl000225	50976	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50952_C_A:90,6,0
+chrUn_gl000225	50976	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=50.62;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:50952_C_A:90,6,0
+chrUn_gl000225	131760	.	C	T	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.18;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:131760_C_T:90,6,0
+chrUn_gl000225	131760	.	C	T	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.18;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:131760_C_T:90,6,0
+chrUn_gl000225	131765	.	G	C	62.74	SNP_FILTER	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.18;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:131760_C_T:90,6,0
+chrUn_gl000225	131765	.	G	C	62.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=25.18;QD=31.37;SOR=2.303	GT:AD:DP:GQ:PGT:PID:PL	1/1:0,2:2:6:1|1:131760_C_T:90,6,0
+chrUn_gl000228	117620	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0
+chrUn_gl000228	117620	.	A	G	32.74	PASS	AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=40.00;QD=16.37;SOR=2.303	GT:AD:DP:GQ:PL	1/1:0,2:2:6:60,6,0

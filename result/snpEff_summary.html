@@ -1,0 +1,1057 @@
+
+<!--==========================================================================
+	FTL macros 
+	========================================================================== -->
+
+
+<!--==========================================================================
+	CSS styles 
+	========================================================================== -->
+
+
+<style type="text/css">
+
+body {
+	background-color: #dddddd;
+}
+
+/* Table styles. */
+
+table {
+  border-color: #000;
+  border-spacing: 0px;
+  border-style: solid;
+  border-width: 1px;
+  cell-spacing: 0px;
+}
+
+.noBorder {
+  border-width: 0px;
+}
+
+td, th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  padding: 2px 0.5em;
+  white-space: nowrap;
+}
+
+td.numeric {
+  text-align: right;
+}
+
+th {
+  background-color: #c0c0c0;
+}
+
+th.mainHeader {
+  background-color: #808080;
+  color: #ffffff;
+  text-align: left;
+}
+
+th a {
+  color: #000080;
+  text-decoration: none;
+}
+
+th a:visited {
+  color: #000080;
+}
+
+th a:active, th a:hover {
+  color: #800000;
+  text-decoration: underline;
+}
+
+.toc {
+	border: 1px solid #aaa;
+	background-color: #eeeeee;
+	padding: 5px;
+	font-size: 95%;
+}
+
+.note {
+	border: 1px solid #aaa;
+	background-color: #eeeeee;
+	padding: 5px;
+	font-size: 90%;
+	text-align: left;
+}
+
+.main {
+	margin-top: 15px;
+	width: 1000px;
+	text-align: left;
+	background: #ffffff;
+	border: 3px solid #777777;
+}
+
+.histo {
+	table-layout:fixed;
+	width:100%;
+	border:1px solid #aaa;
+	word-wrap:break-word;
+}
+
+</style>
+
+
+<!--==========================================================================
+	Index
+	========================================================================== -->
+
+<center>
+<div class="main">
+
+<center> <h3> SnpEff: Variant analysis </h3> </center>
+
+<div style="margin-left: .5em">
+<table class="toc"><tr><td>
+	<center><b>Contents</b></center>
+	<a href="#summary">Summary</a><br>
+	<a href="#changeRateChr"> Variant rate by chromosome</a><br>
+	<a href="#changesByType">Variants by type</a><br>
+	<a href="#effectsImpact"> Number of variants by impact </a><br>
+	<a href="#effectsImpact"> Number of variants by functional class </a><br>
+	<a href="#effects"> Number of variants by effect </a><br>
+	<a href="#quality">Quality histogram</a><br>
+	<a href="#indels">InDel length histogram</a><br>
+	<a href="#baseChages">Base variant table</a><br>
+	<a href="#tstv">Transition vs transversions (ts/tv)</a><br>
+	<a href="#alleleFreq"> Allele frequency </a><br>
+	<a href="#alleleCount"> Allele Count </a><br>
+	<a href="#codonChanges"> Codon change table </a><br>
+	<a href="#aaChanges"> Amino acid change table </a><br>
+	<a href="#chrChanges"> Chromosome variants plots </a><br>
+	<a href="snpEff_genes.txt"> Details by gene </a><br>
+</tr></td></table>
+</div>
+
+
+<!--==========================================================================
+	Summary table 
+	========================================================================== -->
+
+<hr>
+<a name="summary">
+<center>
+<b>Summary</b><p>
+
+<table border=0>
+	<tr bgcolor=ffffff> 
+		<td valign=top> <b> Genome </b> </td>
+		<td> hg19 </td>
+	</tr>
+	<tr bgcolor=dddddd> 
+		<td valign=top> <b> Date </b> </td>
+		<td> 2018-12-15 00:58 </td>
+	</tr>
+	<tr bgcolor=ffffff> 
+		<td valign=top> <b> SnpEff version </b> </td>
+		<td> <pre>SnpEff 4.3t (build 2017-11-24 10:18), by Pablo Cingolani</pre> </td>
+	</tr>
+	<tr bgcolor=dddddd> 
+		<td valign=top> <b> Command line arguments </b> </td>
+		<td> <pre>SnpEff  hg19 SRR000982.filtered.variants.vcf 
+</pre> </td>
+	</tr>
+	<tr bgcolor=ffffff> 
+		<td valign=top> <b> Warnings </b> </td>
+		 
+		<td bgcolor="#ffffff"> 0 </td>
+	</tr>	
+	<tr bgcolor=dddddd> 
+		<td valign=top> <b> Errors </b> </td>
+		 
+		<td bgcolor="#dddddd"> 0 </td>
+	</tr>	
+	<tr bgcolor=ffffff>
+		<td valign=top> <b> Number of lines (input file) </b> </td>
+		<td> 690 </td>
+	</tr>
+	<tr bgcolor=dddddd>
+		<td valign=top> <b> Number of variants (before filter) </b> </td>
+		<td> 690 </td>
+	</tr>
+	<tr bgcolor=ffffff>
+		<td valign=top> <b> Number of not variants <br>(i.e. reference equals alternative) </b> </td>
+		<td> 0 </td>
+	</tr>
+	<tr bgcolor=dddddd>
+		<td valign=top> <b> Number of variants processed <br> (i.e. after filter and non-variants) </b> </td>
+		<td> 690 </td>
+	</tr>
+	<tr bgcolor=ffffff>
+		<td valign=top> <b> Number of known variants <br>(i.e. non-empty ID) </b> </td>
+		<td> 
+		0
+		( 0% ) 
+		</td>
+	</tr>
+	<tr bgcolor=ffffff>
+		<td valign=top> <b> Number of multi-allelic VCF entries <br>(i.e. more than two alleles) </b> </td>
+		<td> 
+		0
+		</td>
+	</tr>
+	<tr bgcolor=dddddd>
+		<td valign=top> <b> Number of effects </b> </td>
+		<td> 968 </td>
+	</tr>
+	<tr bgcolor=ffffff>
+		<td valign=top> <b> Genome total length </b> </td>
+		<td> 3,137,161,265 </td>
+	</tr>
+	<tr bgcolor=dddddd>
+		<td valign=top> <b> Genome effective length </b> </td>
+		<td> 2,986,131,516 </td>
+	</tr>
+	<tr bgcolor=ffffff>
+		<td valign=top> <b> Variant rate </b> </td>
+		<td> 1 variant every 4,327,726 bases </td>
+	</tr>
+</table>
+<p>
+</center>
+
+<!--==========================================================================
+	Variant rate by chromosome
+	========================================================================== -->
+
+<hr> 
+<a name="changeRateChr"> 
+
+<center>
+<b> Variants rate details </b><p>
+
+<table border=1>
+	<tr><th> Chromosome </th><th> Length </th><th> Variants </th><th> Variants rate </th></tr> 
+		<tr>
+			<td> 1 </td>
+			<td class="numeric"> 249,250,621 </td>
+			<td class="numeric"> 38 </td>
+			<td class="numeric"> 6,559,226 </td>
+		</tr> 
+		<tr>
+			<td> 2 </td>
+			<td class="numeric"> 243,199,373 </td>
+			<td class="numeric"> 24 </td>
+			<td class="numeric"> 10,133,307 </td>
+		</tr> 
+		<tr>
+			<td> 3 </td>
+			<td class="numeric"> 198,022,430 </td>
+			<td class="numeric"> 32 </td>
+			<td class="numeric"> 6,188,200 </td>
+		</tr> 
+		<tr>
+			<td> 4 </td>
+			<td class="numeric"> 191,154,276 </td>
+			<td class="numeric"> 24 </td>
+			<td class="numeric"> 7,964,761 </td>
+		</tr> 
+		<tr>
+			<td> 5 </td>
+			<td class="numeric"> 180,915,260 </td>
+			<td class="numeric"> 18 </td>
+			<td class="numeric"> 10,050,847 </td>
+		</tr> 
+		<tr>
+			<td> 6 </td>
+			<td class="numeric"> 171,115,067 </td>
+			<td class="numeric"> 20 </td>
+			<td class="numeric"> 8,555,753 </td>
+		</tr> 
+		<tr>
+			<td> 7 </td>
+			<td class="numeric"> 159,138,663 </td>
+			<td class="numeric"> 16 </td>
+			<td class="numeric"> 9,946,166 </td>
+		</tr> 
+		<tr>
+			<td> 8 </td>
+			<td class="numeric"> 146,364,022 </td>
+			<td class="numeric"> 8 </td>
+			<td class="numeric"> 18,295,502 </td>
+		</tr> 
+		<tr>
+			<td> 9 </td>
+			<td class="numeric"> 141,213,431 </td>
+			<td class="numeric"> 20 </td>
+			<td class="numeric"> 7,060,671 </td>
+		</tr> 
+		<tr>
+			<td> 10 </td>
+			<td class="numeric"> 135,534,747 </td>
+			<td class="numeric"> 110 </td>
+			<td class="numeric"> 1,232,134 </td>
+		</tr> 
+		<tr>
+			<td> 11 </td>
+			<td class="numeric"> 135,006,516 </td>
+			<td class="numeric"> 38 </td>
+			<td class="numeric"> 3,552,803 </td>
+		</tr> 
+		<tr>
+			<td> 12 </td>
+			<td class="numeric"> 133,851,895 </td>
+			<td class="numeric"> 8 </td>
+			<td class="numeric"> 16,731,486 </td>
+		</tr> 
+		<tr>
+			<td> 13 </td>
+			<td class="numeric"> 115,169,878 </td>
+			<td class="numeric"> 2 </td>
+			<td class="numeric"> 57,584,939 </td>
+		</tr> 
+		<tr>
+			<td> 14 </td>
+			<td class="numeric"> 107,349,540 </td>
+			<td class="numeric"> 6 </td>
+			<td class="numeric"> 17,891,590 </td>
+		</tr> 
+		<tr>
+			<td> 15 </td>
+			<td class="numeric"> 102,531,392 </td>
+			<td class="numeric"> 2 </td>
+			<td class="numeric"> 51,265,696 </td>
+		</tr> 
+		<tr>
+			<td> 16 </td>
+			<td class="numeric"> 90,354,753 </td>
+			<td class="numeric"> 102 </td>
+			<td class="numeric"> 885,830 </td>
+		</tr> 
+		<tr>
+			<td> 17 </td>
+			<td class="numeric"> 81,195,210 </td>
+			<td class="numeric"> 58 </td>
+			<td class="numeric"> 1,399,917 </td>
+		</tr> 
+		<tr>
+			<td> 18 </td>
+			<td class="numeric"> 78,077,248 </td>
+			<td class="numeric"> 58 </td>
+			<td class="numeric"> 1,346,159 </td>
+		</tr> 
+		<tr>
+			<td> 20 </td>
+			<td class="numeric"> 63,025,520 </td>
+			<td class="numeric"> 4 </td>
+			<td class="numeric"> 15,756,380 </td>
+		</tr> 
+		<tr>
+			<td> 21 </td>
+			<td class="numeric"> 48,129,895 </td>
+			<td class="numeric"> 6 </td>
+			<td class="numeric"> 8,021,649 </td>
+		</tr> 
+		<tr>
+			<td> 4_gl000193_random </td>
+			<td class="numeric"> 189,789 </td>
+			<td class="numeric"> 2 </td>
+			<td class="numeric"> 94,894 </td>
+		</tr> 
+		<tr>
+			<td> M </td>
+			<td class="numeric"> 16,571 </td>
+			<td class="numeric"> 62 </td>
+			<td class="numeric"> 267 </td>
+		</tr> 
+		<tr>
+			<td> Un_gl000219 </td>
+			<td class="numeric"> 179,198 </td>
+			<td class="numeric"> 2 </td>
+			<td class="numeric"> 89,599 </td>
+		</tr> 
+		<tr>
+			<td> Un_gl000220 </td>
+			<td class="numeric"> 161,802 </td>
+			<td class="numeric"> 4 </td>
+			<td class="numeric"> 40,450 </td>
+		</tr> 
+		<tr>
+			<td> Un_gl000225 </td>
+			<td class="numeric"> 211,173 </td>
+			<td class="numeric"> 14 </td>
+			<td class="numeric"> 15,083 </td>
+		</tr> 
+		<tr>
+			<td> Un_gl000228 </td>
+			<td class="numeric"> 129,120 </td>
+			<td class="numeric"> 2 </td>
+			<td class="numeric"> 64,560 </td>
+		</tr> 
+		<tr>
+			<td> X </td>
+			<td class="numeric"> 155,270,560 </td>
+			<td class="numeric"> 4 </td>
+			<td class="numeric"> 38,817,640 </td>
+		</tr> 
+		<tr>
+			<td> Y </td>
+			<td class="numeric"> 59,373,566 </td>
+			<td class="numeric"> 6 </td>
+			<td class="numeric"> 9,895,594 </td>
+		</tr> 
+	<tr>
+		<th> Total </th>
+		<th class="numeric"> 2,986,131,516 </th>
+		<th class="numeric"> 690 </th>
+		<th class="numeric"> 4,327,726 </th>
+	</tr> 
+</table> 
+</center>
+
+<!--==========================================================================
+	Variants by type
+	========================================================================== -->
+
+<hr> 
+<a name="changesByType"> 
+<center>
+<b> Number variants by type</b><p>
+
+<table border=1>
+	<thead>
+		<tr>
+			<th> <b> Type   </b> </th>
+			<th> <b> Total  </b> </th>
+		</tr>
+	</thead>
+    <tbody>
+	    <tr>
+	    	<td> <b> SNP </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 690 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> MNP </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> INS </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> DEL </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> MIXED </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> INV </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> DUP </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> BND </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+	    <tr>
+	    	<td> <b> INTERVAL </b> </td>
+	    	<td class="numeric" bgcolor="ffffff"> 0 </td>
+	    </tr>
+    </tbody>
+    <tfoot>
+	    <tr>
+	    	<th><b>Total </b> </th>
+	    	<th class="numeric"> 690 </th>
+	    </tr>
+    </tfoot>
+</table>
+</center>
+
+<!--==========================================================================
+	Effects by impact
+	========================================================================== -->
+
+<hr> 
+<a name="effectsImpact"> 
+<center>
+<b> Number of effects by impact </b> <p> 
+
+<table border=0>
+	<thead>
+		<tr> 
+			<th><b> Type (alphabetical order)  </b></th>
+			<th> &nbsp; </th>
+			<th> Count </th>
+			<th> Percent </th>
+		</tr>
+	</thead>
+		<tr> 
+			<td> <b> LOW </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#00ff00"> 4 </td> 
+			<td class="numeric" bgcolor="#00ff00"> 0.413% </td>
+		</tr>
+		<tr> 
+			<td> <b> MODIFIER </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#ff0000"> 964 </td> 
+			<td class="numeric" bgcolor="#ff0000"> 99.587% </td>
+		</tr>
+</table><br>
+<p>
+</center>
+
+<!--==========================================================================
+	Effects by functional class
+	========================================================================== -->
+
+<hr> 
+<a name="effectsFuncClass"> 
+<center>
+<b> Number of effects by functional class </b> <p> 
+
+<table border=0>
+	<thead>
+		<tr> 
+			<th><b> Type (alphabetical order)  </b></th>
+			<th> &nbsp; </th>
+			<th> Count </th>
+			<th> Percent </th>
+		</tr>
+	</thead>
+</table><br>
+<p>
+
+Missense / Silent ratio: 0
+
+</center>
+
+<!--==========================================================================
+	Effects stats
+	========================================================================== -->
+
+<hr> 
+<a name="effects"> 
+<center>
+<b> Number of effects by type and region </b> <p> 
+
+<table border=0>
+	<tr>
+		<th> Type </th>
+		<th> Region </th>
+	</tr>
+	<tr>
+		<td> <table border=0>
+	<thead>
+		<tr> 
+			<th><b> Type (alphabetical order)  </b></th>
+			<th> &nbsp; </th>
+			<th> Count </th>
+			<th> Percent </th>
+		</tr>
+	</thead>
+		<tr> 
+			<td> <b> 3_prime_UTR_variant </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#00ff00"> 2 </td> 
+			<td class="numeric" bgcolor="#00ff00"> 0.207% </td>
+		</tr>
+		<tr> 
+			<td> <b> downstream_gene_variant </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#18e600"> 60 </td> 
+			<td class="numeric" bgcolor="#18e600"> 6.198% </td>
+		</tr>
+		<tr> 
+			<td> <b> intergenic_region </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#ff0000"> 596 </td> 
+			<td class="numeric" bgcolor="#ff0000"> 61.57% </td>
+		</tr>
+		<tr> 
+			<td> <b> intron_variant </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#44ba00"> 162 </td> 
+			<td class="numeric" bgcolor="#44ba00"> 16.736% </td>
+		</tr>
+		<tr> 
+			<td> <b> non_coding_transcript_exon_variant </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#02fc00"> 8 </td> 
+			<td class="numeric" bgcolor="#02fc00"> 0.826% </td>
+		</tr>
+		<tr> 
+			<td> <b> sequence_feature </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#00fe00"> 4 </td> 
+			<td class="numeric" bgcolor="#00fe00"> 0.413% </td>
+		</tr>
+		<tr> 
+			<td> <b> upstream_gene_variant </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#39c500"> 136 </td> 
+			<td class="numeric" bgcolor="#39c500"> 14.05% </td>
+		</tr>
+</table><br>
+ </td>
+		<td> <table border=0>
+	<thead>
+		<tr> 
+			<th><b> Type (alphabetical order)  </b></th>
+			<th> &nbsp; </th>
+			<th> Count </th>
+			<th> Percent </th>
+		</tr>
+	</thead>
+		<tr> 
+			<td> <b> DOWNSTREAM </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#18e600"> 60 </td> 
+			<td class="numeric" bgcolor="#18e600"> 6.198% </td>
+		</tr>
+		<tr> 
+			<td> <b> EXON </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#02fc00"> 8 </td> 
+			<td class="numeric" bgcolor="#02fc00"> 0.826% </td>
+		</tr>
+		<tr> 
+			<td> <b> INTERGENIC </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#ff0000"> 596 </td> 
+			<td class="numeric" bgcolor="#ff0000"> 61.57% </td>
+		</tr>
+		<tr> 
+			<td> <b> INTRON </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#44ba00"> 162 </td> 
+			<td class="numeric" bgcolor="#44ba00"> 16.736% </td>
+		</tr>
+		<tr> 
+			<td> <b> TRANSCRIPT </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#00fe00"> 4 </td> 
+			<td class="numeric" bgcolor="#00fe00"> 0.413% </td>
+		</tr>
+		<tr> 
+			<td> <b> UPSTREAM </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#39c500"> 136 </td> 
+			<td class="numeric" bgcolor="#39c500"> 14.05% </td>
+		</tr>
+		<tr> 
+			<td> <b> UTR_3_PRIME </b> </td> 
+			<th> &nbsp; </th>
+			<td class="numeric" bgcolor="#00ff00"> 2 </td> 
+			<td class="numeric" bgcolor="#00ff00"> 0.207% </td>
+		</tr>
+</table><br>
+ </td>
+	</tr>
+</table>
+<p>
+
+<img src="http://chart.apis.google.com/chart?cht=bvs&chs=800x300&chbh=50,4,8&chxt=y,y,x,x&chtt=Variations&chxp=1,50.0|3,50.0&chxr=0,0.0,61.57024793388429|1,0.0,100.0|3,0.0,100.0&chco=00FFFF,FA8072,FF0000,A52A2A,FFA500,DEB887,E9967A,7FFFD4,808080&chdl=Upstream|5%27UTR|Exon|Splice+Donor|Intron|Splice+Acceptor|3%27UTR|Downstream|Intergenic&chxl=1:|%25|2:|Intergenic|Up|5%27UTR|Exon|Donor|Intron|Acceptor|Exon|3%27UTR|Down|Intergenic|3:|&chd=e:AAOmAAAAAAAAAAAAAAAAAA,AAAAAAAAAAAAAAAAAAAAAA,AAAAAAA3AAAAAAA3AAAAAA,AAAAAAAAAAAAAAAAAAAAAA,AAAAAAAAAARZAAAAAAAAAA,AAAAAAAAAAAAAAAAAAAAAA,AAAAAAAAAAAAAAAAAOAAAA,AAAAAAAAAAAAAAAAAAGcAA,..AAAAAAAAAAAAAAAAAA.." border=1><p>
+
+</center>
+
+<!--==========================================================================
+	Quality
+	========================================================================== -->
+
+<hr> 
+<a name="quality"> 
+<b> Quality:</b> 
+<p>
+<pre>
+	<table class="histo">
+		<tr> <th width=15%>Min</th><td>11</td> </tr>
+		<tr> <th>Max</th><td>507</td> </tr>
+		<tr> <th>Mean</th><td>71.003</td> </tr>
+		<tr> <th>Median</th><td>62</td> </tr>
+		<tr> <th>Standard deviation</th><td>67.45</td> </tr>
+		<tr> <th>Values</th><td>11,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,42,43,44,45,46,47,48,51,52,54,56,58,59,61,62,63,64,65,66,72,73,87,88,89,90,91,92,94,95,96,99,107,111,117,123,124,129,130,136,138,139,145,152,156,157,159,162,168,178,194,196,241,242,286,320,331,362,398,507</td> </tr>
+		<tr> <th>Count</th><td>4,2,4,44,4,8,2,2,4,6,6,2,8,2,4,4,16,24,32,46,36,22,6,2,4,2,2,4,2,2,2,2,2,6,2,2,2,180,10,2,4,2,4,2,8,6,2,4,6,4,6,2,2,2,26,2,2,2,2,2,2,4,2,4,2,18,4,2,2,2,2,4,2,4,4,2,4,2,10,4,2,2</td> </tr>
+		</tr>
+	</table>
+	<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=49.0,17.0,3,2&chxp=1,50.0|3,50.0&chtt=Quality+histogram&chxr=0,2.0,180.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Count|2:|11||||||||||25||||||||||35||||||||||51||||||||||65||||||||||94||||||||||130||||||||||168||||||||||398|507|3:|Quality&chd=e:ApAAApOuApB7AAAAApBSBSAAB7AAApApEfHrKPPXMKHCBSAAApAAAAApAAAAAAAAAABSAAAAAA..CkAAApAAApAAB7BSAAApBSApBSAAAAAAIUAAAAAAAAAAAAApAAApAAFIApAAAAAAAAApAAApApAAApAACkApAAAA"><br>
+</pre>
+
+<!--==========================================================================
+	InDels
+	========================================================================== -->
+
+<hr> 
+<a name="indels"> 
+<b> Insertions and deletions length:</b> 
+<p>
+<pre>
+	<img src="http://chart.apis.google.com/chart?chd=e:&cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chxl=1:|Count|3:|Length&chtt=Insertion+deletion+length+histogram&chxr=0,2.147483647E9,-2.147483648E9|1,0.0,100.0|3,0.0,100.0"><br>
+</pre>
+
+<!--==========================================================================
+	Base changes
+	========================================================================== -->
+
+<hr> 
+<a name="baseChages"> 
+<center>
+<b> Base changes (SNPs) </b> <p>
+
+<table border=1>
+    <tr>
+    	<td> &nbsp; </td>  <th> <b> A </b> </th> <th> <b> C </b> </th> <th> <b> G </b> </th> <th> <b> T </b> </th>
+    </tr>
+	    <tr> <th> <b> A </b> </th><td class="numeric" bgcolor="ffffff"> 0 </td><td class="numeric" bgcolor="#4db100"> 46 </td><td class="numeric" bgcolor="#ff0000"> 106 </td><td class="numeric" bgcolor="#58a600"> 50 </td> </tr>
+	    <tr> <th> <b> C </b> </th><td class="numeric" bgcolor="#4db100"> 46 </td><td class="numeric" bgcolor="ffffff"> 0 </td><td class="numeric" bgcolor="#00ff00"> 20 </td><td class="numeric" bgcolor="#c93500"> 88 </td> </tr>
+	    <tr> <th> <b> G </b> </th><td class="numeric" bgcolor="#ed1100"> 100 </td><td class="numeric" bgcolor="#41bd00"> 42 </td><td class="numeric" bgcolor="ffffff"> 0 </td><td class="numeric" bgcolor="#35c900"> 38 </td> </tr>
+	    <tr> <th> <b> T </b> </th><td class="numeric" bgcolor="#1de100"> 30 </td><td class="numeric" bgcolor="#cf2f00"> 90 </td><td class="numeric" bgcolor="#29d500"> 34 </td><td class="numeric" bgcolor="ffffff"> 0 </td> </tr>
+</table>
+</center>
+
+<p>
+
+<!--==========================================================================
+	Ts/Tv
+	========================================================================== -->
+
+<hr> 
+<a name="tstv">
+<center> <b> Ts/Tv (transitions / transversions) </b> <p> </center>
+
+<small>
+<b>Note:</b> Only SNPs are used for this statistic.<br>
+<b>Note:</b> This Ts/Tv ratio is a 'raw' ratio (ratio of observed events).
+</small>
+<p>
+
+<center>
+<table border=1>
+	<tr> <th> Transitions </th><td class="numeric"> 742 </td> </tr>
+	<tr> <th> Transversions </th><td class="numeric"> 584 </td> </tr>
+	<tr> <th> Ts/Tv ratio </th><td class="numeric"> 1.2705 </td> </tr>
+</table>
+</center>
+<p>
+
+	<b>All variants:</b>
+	<pre>Sample ,SRR000982,Total
+Transitions ,742,742
+Transversions ,584,584
+Ts/Tv ,1.271,1.271
+</pre>
+	<p>
+	<b>Only known variants</b> (i.e. the ones having a non-empty ID field):
+	<pre>No results available (empty input?)</pre>
+<p>
+
+<!--==========================================================================
+	Allele frequency
+	========================================================================== -->
+
+<hr> 
+<a name="alleleFreq">
+<center> <b> Allele frequency </b> <p> </center>
+
+	<img src="http://chart.apis.google.com/chart?cht=bvg&chd=e:AA..&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=5.0,58.0,3,2&chxp=1,50.0|3,50.0&chtt=Allele+Frequency+%25&chxr=0,54.0,636.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Count|2:|50|100|3:|Alleles+frequency"><br>
+	<table class="histo">
+		<tr> <th width=15%>Min</th><td>50</td> </tr>
+		<tr> <th>Max</th><td>100</td> </tr>
+		<tr> <th>Mean</th><td>96.087</td> </tr>
+		<tr> <th>Median</th><td>100</td> </tr>
+		<tr> <th>Standard deviation</th><td>13.439</td> </tr>
+		<tr> <th>Values</th><td>50,100</td> </tr>
+		<tr> <th>Count</th><td>54,636</td> </tr>
+		</tr>
+	</table>
+<p>
+	
+<!--==========================================================================
+	Allele Count
+	========================================================================== -->
+
+<hr> 
+<a name="alleleCount">
+<center> <b> Allele Count </b> <p> </center>
+	<img src="http://chart.apis.google.com/chart?cht=bvg&chd=e:AA..&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chtt=Allele+Count&chxp=1,50.0|3,50.0&chxl=1:|Count|2:|1|2|3:|Allele+Count&chxr=0,54.0,636.0|1,0.0,100.0|3,0.0,100.0"><br>
+	<table class="histo">
+		<tr> <th width=15%>Min</th><td>1</td> </tr>
+		<tr> <th>Max</th><td>2</td> </tr>
+		<tr> <th>Mean</th><td>1.922</td> </tr>
+		<tr> <th>Median</th><td>2</td> </tr>
+		<tr> <th>Standard deviation</th><td>0.269</td> </tr>
+		<tr> <th>Values</th><td>1,2</td> </tr>
+		<tr> <th>Count</th><td>54,636</td> </tr>
+		</tr>
+	</table>
+<p>
+
+
+<!--==========================================================================
+	Hom/Het table
+	========================================================================== -->
+
+<hr> 
+<a name="homHet">
+<center> <b> Hom/Het per sample </b> <p> </center>
+	<img src="http://chart.apis.google.com/chart?cht=bvg&chd=e:..&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Heterozygous+genotypes&chxr=0,0.0,54.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Heterozygous+count|2:|0|3:|Sample+number"><br>
+	<img src="http://chart.apis.google.com/chart?cht=bvg&chd=e:..&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Homozygous+%28ALT%29+genotypes&chxr=0,0.0,636.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Homozygous+count|2:|0|3:|Sample+number"><br>
+	<img src="http://chart.apis.google.com/chart?cht=bvg&chd=e:AA&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Missing+genotypes&chxr=0,0.0,0.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Missing+count|2:|0|3:|Sample+number"><br>
+	
+	<pre>Sample_names , SRR000982
+Reference , 0
+Het , 54
+Hom , 636
+Missing , 0
+</pre>
+<p>
+
+<!--==========================================================================
+	Codon change table
+	========================================================================== -->
+	
+<hr> 
+<a name="codonChanges">
+<center>
+<b> Codon changes</b> <p>
+
+	<div class="note">
+		How to read this table: <br>
+		- Rows are reference codons and columns are changed codons. E.g. Row 'AAA' column 'TAA' indicates how many 'AAA' codons have been replaced by 'TAA' codons.<br>
+		- Red background colors indicate that more changes happened (heat-map).<br>
+		- Diagonals are indicated using grey background color <br> 
+		- WARNING: This table may include different translation codon tables (e.g. mamalian DNA and mitochondrial DNA).<br>
+		<p>
+	</div><p>
+
+  
+<table border=1>
+	<thead>
+		<tr> 
+			<th> &nbsp; </th>
+			
+		</tr>
+	</thead>
+</table>
+</center>
+
+<!--==========================================================================
+	Amino acid change table
+	========================================================================== -->
+
+<hr> 
+<a name="aaChanges">
+<center>
+<b> Amino acid changes</b><p> 
+
+	<div class="note">
+		How to read this table: <br>
+		- Rows are reference amino acids and columns are changed amino acids. E.g. Row 'A' column 'E' indicates how many 'A' amino acids have been replaced by 'E' amino acids.<br>
+		- Red background colors indicate that more changes happened (heat-map).<br>
+		- Diagonals are indicated using grey background color <br> 
+		- WARNING: This table may include different translation codon tables (e.g. mamalian DNA and mitochondrial DNA).<br>
+		<p>
+	</div><p>
+
+<table border=1>
+	<thead>
+		<tr> 
+			<th> &nbsp; </th>
+			
+		</tr>
+	</thead>
+</table>
+</center>
+
+<!--==========================================================================
+	Chromosome variants table
+	========================================================================== -->
+
+<hr> 
+<a name="chrChanges">
+<center>
+<b> Variants by chromosome</b><p> 
+
+<center>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=2.49E7,1.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+1&chxr=0,0.0,18.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||||||||||||||25000000|||||||||||||||||||||||||50000000|||||||||||||||||||||||||75000000|||||||||||||||||||||||||100000000|||||||||||||||||||||||||125000000|||||||||||||||||||||||||150000000|||||||||||||||||||||||||175000000|||||||||||||||||||||||||200000000|||||||||||||||||||||||||225000000||||||||||||||||||||||||249000000|3:|Position&chd=e:AAHCAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOFAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		1, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000,160000000,161000000,162000000,163000000,164000000,165000000,166000000,167000000,168000000,169000000,170000000,171000000,172000000,173000000,174000000,175000000,176000000,177000000,178000000,179000000,180000000,181000000,182000000,183000000,184000000,185000000,186000000,187000000,188000000,189000000,190000000,191000000,192000000,193000000,194000000,195000000,196000000,197000000,198000000,199000000,200000000,201000000,202000000,203000000,204000000,205000000,206000000,207000000,208000000,209000000,210000000,211000000,212000000,213000000,214000000,215000000,216000000,217000000,218000000,219000000,220000000,221000000,222000000,223000000,224000000,225000000,226000000,227000000,228000000,229000000,230000000,231000000,232000000,233000000,234000000,235000000,236000000,237000000,238000000,239000000,240000000,241000000,242000000,243000000,244000000,245000000,246000000,247000000,248000000,249000000
+1,Count,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=2.43E7,1.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+2&chxr=0,0.0,16.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0||||||||||||||||||||||||24000000||||||||||||||||||||||||48000000||||||||||||||||||||||||72000000||||||||||||||||||||||||96000000||||||||||||||||||||||||120000000||||||||||||||||||||||||144000000||||||||||||||||||||||||168000000||||||||||||||||||||||||192000000||||||||||||||||||||||||216000000||||||||||||||||||||||||240000000|||243000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		2, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000,160000000,161000000,162000000,163000000,164000000,165000000,166000000,167000000,168000000,169000000,170000000,171000000,172000000,173000000,174000000,175000000,176000000,177000000,178000000,179000000,180000000,181000000,182000000,183000000,184000000,185000000,186000000,187000000,188000000,189000000,190000000,191000000,192000000,193000000,194000000,195000000,196000000,197000000,198000000,199000000,200000000,201000000,202000000,203000000,204000000,205000000,206000000,207000000,208000000,209000000,210000000,211000000,212000000,213000000,214000000,215000000,216000000,217000000,218000000,219000000,220000000,221000000,222000000,223000000,224000000,225000000,226000000,227000000,228000000,229000000,230000000,231000000,232000000,233000000,234000000,235000000,236000000,237000000,238000000,239000000,240000000,241000000,242000000,243000000
+2,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=1.98E7,1.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+3&chxr=0,0.0,18.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||||||||19000000|||||||||||||||||||38000000|||||||||||||||||||57000000|||||||||||||||||||76000000|||||||||||||||||||95000000|||||||||||||||||||114000000|||||||||||||||||||133000000|||||||||||||||||||152000000|||||||||||||||||||171000000|||||||||||||||||||190000000||||||||198000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHHCAA"><br>
+		3, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000,160000000,161000000,162000000,163000000,164000000,165000000,166000000,167000000,168000000,169000000,170000000,171000000,172000000,173000000,174000000,175000000,176000000,177000000,178000000,179000000,180000000,181000000,182000000,183000000,184000000,185000000,186000000,187000000,188000000,189000000,190000000,191000000,192000000,193000000,194000000,195000000,196000000,197000000,198000000
+3,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,2,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+4&chxr=0,0.0,8.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||||||||19000000|||||||||||||||||||38000000|||||||||||||||||||57000000|||||||||||||||||||76000000|||||||||||||||||||95000000|||||||||||||||||||114000000|||||||||||||||||||133000000|||||||||||||||||||152000000|||||||||||||||||||171000000|||||||||||||||||||190000000|191000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA..AAAA"><br>
+		4, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000,160000000,161000000,162000000,163000000,164000000,165000000,166000000,167000000,168000000,169000000,170000000,171000000,172000000,173000000,174000000,175000000,176000000,177000000,178000000,179000000,180000000,181000000,182000000,183000000,184000000,185000000,186000000,187000000,188000000,189000000,190000000,191000000
+4,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,8,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+5&chxr=0,0.0,6.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0||||||||||||||||||18000000||||||||||||||||||36000000||||||||||||||||||54000000||||||||||||||||||72000000||||||||||||||||||90000000||||||||||||||||||108000000||||||||||||||||||126000000||||||||||||||||||144000000||||||||||||||||||162000000||||||||||||||||||180000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..qPAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		5, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000,160000000,161000000,162000000,163000000,164000000,165000000,166000000,167000000,168000000,169000000,170000000,171000000,172000000,173000000,174000000,175000000,176000000,177000000,178000000,179000000,180000000
+5,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,4,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=1.71E7,1.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+6&chxr=0,0.0,12.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||||||17000000|||||||||||||||||34000000|||||||||||||||||51000000|||||||||||||||||68000000|||||||||||||||||85000000|||||||||||||||||102000000|||||||||||||||||119000000|||||||||||||||||136000000|||||||||||||||||153000000|||||||||||||||||170000000|171000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAKPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		6, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000,160000000,161000000,162000000,163000000,164000000,165000000,166000000,167000000,168000000,169000000,170000000,171000000
+6,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=1.59E7,1.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+7&chxr=0,0.0,10.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0||||||||||||||||16000000||||||||||||||||32000000||||||||||||||||48000000||||||||||||||||64000000||||||||||||||||80000000||||||||||||||||96000000||||||||||||||||112000000||||||||||||||||128000000||||||||||||||||144000000|||||||||||||||159000000|3:|Position&chd=e:AAAAMzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAMzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		7, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000,156000000,157000000,158000000,159000000
+7,Count,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+8&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0||||||||||||||14000000||||||||||||||28000000||||||||||||||42000000||||||||||||||56000000||||||||||||||70000000||||||||||||||84000000||||||||||||||98000000||||||||||||||112000000||||||||||||||126000000||||||||||||||140000000||||||146000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		8, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000
+8,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=1.41E7,1.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+9&chxr=0,0.0,16.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0||||||||||||||14000000||||||||||||||28000000||||||||||||||42000000||||||||||||||56000000||||||||||||||70000000||||||||||||||84000000||||||||||||||98000000||||||||||||||112000000||||||||||||||126000000||||||||||||||140000000|141000000|3:|Position&chd=e:AAAAAAAAHrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAHrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		9, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000
+9,Count,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=1.35E7,8.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+10&chxr=0,0.0,82.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||13000000|||||||||||||26000000|||||||||||||39000000|||||||||||||52000000|||||||||||||65000000|||||||||||||78000000|||||||||||||91000000|||||||||||||104000000|||||||||||||117000000|||||||||||||130000000|||||135000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSAAAAAAAAAAAAAAAAMKEfAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSAAAAAAAAAAAAAAAAAA"><br>
+		10, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000
+10,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,16,6,0,0,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chg=1.35E7,2.0,3,2&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+11&chxr=0,0.0,28.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||13000000|||||||||||||26000000|||||||||||||39000000|||||||||||||52000000|||||||||||||65000000|||||||||||||78000000|||||||||||||91000000|||||||||||||104000000|||||||||||||117000000|||||||||||||130000000|||||135000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEfAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI9AAAAAAAAAAAAAAAA"><br>
+		11, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000
+11,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+12&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||13000000|||||||||||||26000000|||||||||||||39000000|||||||||||||52000000|||||||||||||65000000|||||||||||||78000000|||||||||||||91000000|||||||||||||104000000|||||||||||||117000000|||||||||||||130000000|||133000000|3:|Position&chd=e:....AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		12, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000
+12,Count,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+13&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAA&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||11000000|||||||||||22000000|||||||||||33000000|||||||||||44000000|||||||||||55000000|||||||||||66000000|||||||||||77000000|||||||||||88000000|||||||||||99000000|||||||||||110000000|||||115000000|3:|Position"><br>
+		13, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000
+13,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+14&chxr=0,0.0,4.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000||||||||||60000000||||||||||70000000||||||||||80000000||||||||||90000000||||||||||100000000|||||||107000000|3:|Position"><br>
+		14, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000
+14,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+15&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000||||||||||60000000||||||||||70000000||||||||||80000000||||||||||90000000||||||||||100000000||102000000|3:|Position"><br>
+		15, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000
+15,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chg=9000000.0,9.0,3,2&chtt=Variants+histogram%3A+16&chxr=0,0.0,98.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000||||||||||60000000||||||||||70000000||||||||||80000000||||||||||90000000|3:|Position"><br>
+		16, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000
+16,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chg=8100000.0,3.0,3,2&chtt=Variants+histogram%3A+17&chxr=0,0.0,38.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAADNAAAAAAAAAADNAAAAAAAAAAAAAAAAAAa4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000||||||||||60000000||||||||||70000000||||||||||80000000|81000000|3:|Position"><br>
+		17, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000
+17,Count,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chg=7800000.0,5.0,3,2&chtt=Variants+histogram%3A+18&chxr=0,0.0,56.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000||||||||||60000000||||||||||70000000||||||||78000000|3:|Position"><br>
+		18, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000
+18,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+20&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000||||||||||60000000|||63000000|3:|Position"><br>
+		20, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000
+20,Count,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+21&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||48000000|3:|Position"><br>
+		21, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000
+21,Count,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chtt=Variants+histogram%3A+4_gl000193_random&chxl=1:|Variants%2F1000b|2:|0|||||||||||||||||||19000|||||||||||||||||||38000|||||||||||||||||||57000|||||||||||||||||||76000|||||||||||||||||||95000|||||||||||||||||||114000|||||||||||||||||||133000|||||||||||||||||||152000|||||||||||||||||||171000||||||||||||||||||189000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		4_gl000193_random, Position,0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000,21000,22000,23000,24000,25000,26000,27000,28000,29000,30000,31000,32000,33000,34000,35000,36000,37000,38000,39000,40000,41000,42000,43000,44000,45000,46000,47000,48000,49000,50000,51000,52000,53000,54000,55000,56000,57000,58000,59000,60000,61000,62000,63000,64000,65000,66000,67000,68000,69000,70000,71000,72000,73000,74000,75000,76000,77000,78000,79000,80000,81000,82000,83000,84000,85000,86000,87000,88000,89000,90000,91000,92000,93000,94000,95000,96000,97000,98000,99000,100000,101000,102000,103000,104000,105000,106000,107000,108000,109000,110000,111000,112000,113000,114000,115000,116000,117000,118000,119000,120000,121000,122000,123000,124000,125000,126000,127000,128000,129000,130000,131000,132000,133000,134000,135000,136000,137000,138000,139000,140000,141000,142000,143000,144000,145000,146000,147000,148000,149000,150000,151000,152000,153000,154000,155000,156000,157000,158000,159000,160000,161000,162000,163000,164000,165000,166000,167000,168000,169000,170000,171000,172000,173000,174000,175000,176000,177000,178000,179000,180000,181000,182000,183000,184000,185000,186000,187000,188000,189000
+4_gl000193_random,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+M&chxr=0,0.0,6.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F100b|2:|0||||||||||||||||1600||||||||||||||||3200||||||||||||||||4800||||||||||||||||6400||||||||||||||||8000||||||||||||||||9600||||||||||||||||11200||||||||||||||||12800||||||||||||||||14400||||||||||||||||16000|||||16500|3:|Position&chd=e:VH..AAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHVHAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVHAAAAAAAAqPAAVHAAAAAAAAAAAAqPAAAAAAAAAAAAAAAAAAVHVHAAAAAAAAVHAAAAVHAAAAAAAAAAVHAAAAVHAAVHqPVHAAAAAAVHAAAAAAAAAAVHVHAAAAAAAAAA"><br>
+		M, Position,0,100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400,3500,3600,3700,3800,3900,4000,4100,4200,4300,4400,4500,4600,4700,4800,4900,5000,5100,5200,5300,5400,5500,5600,5700,5800,5900,6000,6100,6200,6300,6400,6500,6600,6700,6800,6900,7000,7100,7200,7300,7400,7500,7600,7700,7800,7900,8000,8100,8200,8300,8400,8500,8600,8700,8800,8900,9000,9100,9200,9300,9400,9500,9600,9700,9800,9900,10000,10100,10200,10300,10400,10500,10600,10700,10800,10900,11000,11100,11200,11300,11400,11500,11600,11700,11800,11900,12000,12100,12200,12300,12400,12500,12600,12700,12800,12900,13000,13100,13200,13300,13400,13500,13600,13700,13800,13900,14000,14100,14200,14300,14400,14500,14600,14700,14800,14900,15000,15100,15200,15300,15400,15500,15600,15700,15800,15900,16000,16100,16200,16300,16400,16500
+M,Count,2,6,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,4,0,2,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,2,0,0,2,0,0,0,0,0,2,0,0,2,0,2,4,2,0,0,0,2,0,0,0,0,0,2,2,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chtt=Variants+histogram%3A+Un_gl000219&chxl=1:|Variants%2F1000b|2:|0||||||||||||||||||18000||||||||||||||||||36000||||||||||||||||||54000||||||||||||||||||72000||||||||||||||||||90000||||||||||||||||||108000||||||||||||||||||126000||||||||||||||||||144000||||||||||||||||||162000|||||||||||||||||179000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		Un_gl000219, Position,0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000,21000,22000,23000,24000,25000,26000,27000,28000,29000,30000,31000,32000,33000,34000,35000,36000,37000,38000,39000,40000,41000,42000,43000,44000,45000,46000,47000,48000,49000,50000,51000,52000,53000,54000,55000,56000,57000,58000,59000,60000,61000,62000,63000,64000,65000,66000,67000,68000,69000,70000,71000,72000,73000,74000,75000,76000,77000,78000,79000,80000,81000,82000,83000,84000,85000,86000,87000,88000,89000,90000,91000,92000,93000,94000,95000,96000,97000,98000,99000,100000,101000,102000,103000,104000,105000,106000,107000,108000,109000,110000,111000,112000,113000,114000,115000,116000,117000,118000,119000,120000,121000,122000,123000,124000,125000,126000,127000,128000,129000,130000,131000,132000,133000,134000,135000,136000,137000,138000,139000,140000,141000,142000,143000,144000,145000,146000,147000,148000,149000,150000,151000,152000,153000,154000,155000,156000,157000,158000,159000,160000,161000,162000,163000,164000,165000,166000,167000,168000,169000,170000,171000,172000,173000,174000,175000,176000,177000,178000,179000
+Un_gl000219,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chtt=Variants+histogram%3A+Un_gl000220&chxl=1:|Variants%2F1000b|2:|0||||||||||||||||16000||||||||||||||||32000||||||||||||||||48000||||||||||||||||64000||||||||||||||||80000||||||||||||||||96000||||||||||||||||112000||||||||||||||||128000||||||||||||||||144000||||||||||||||||160000|161000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		Un_gl000220, Position,0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000,21000,22000,23000,24000,25000,26000,27000,28000,29000,30000,31000,32000,33000,34000,35000,36000,37000,38000,39000,40000,41000,42000,43000,44000,45000,46000,47000,48000,49000,50000,51000,52000,53000,54000,55000,56000,57000,58000,59000,60000,61000,62000,63000,64000,65000,66000,67000,68000,69000,70000,71000,72000,73000,74000,75000,76000,77000,78000,79000,80000,81000,82000,83000,84000,85000,86000,87000,88000,89000,90000,91000,92000,93000,94000,95000,96000,97000,98000,99000,100000,101000,102000,103000,104000,105000,106000,107000,108000,109000,110000,111000,112000,113000,114000,115000,116000,117000,118000,119000,120000,121000,122000,123000,124000,125000,126000,127000,128000,129000,130000,131000,132000,133000,134000,135000,136000,137000,138000,139000,140000,141000,142000,143000,144000,145000,146000,147000,148000,149000,150000,151000,152000,153000,154000,155000,156000,157000,158000,159000,160000,161000
+Un_gl000220,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chg=21100.0,1.0,3,2&chtt=Variants+histogram%3A+Un_gl000225&chxr=0,0.0,10.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000b|2:|0|||||||||||||||||||||21000|||||||||||||||||||||42000|||||||||||||||||||||63000|||||||||||||||||||||84000|||||||||||||||||||||105000|||||||||||||||||||||126000|||||||||||||||||||||147000|||||||||||||||||||||168000|||||||||||||||||||||189000|||||||||||||||||||||210000|211000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		Un_gl000225, Position,0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000,21000,22000,23000,24000,25000,26000,27000,28000,29000,30000,31000,32000,33000,34000,35000,36000,37000,38000,39000,40000,41000,42000,43000,44000,45000,46000,47000,48000,49000,50000,51000,52000,53000,54000,55000,56000,57000,58000,59000,60000,61000,62000,63000,64000,65000,66000,67000,68000,69000,70000,71000,72000,73000,74000,75000,76000,77000,78000,79000,80000,81000,82000,83000,84000,85000,86000,87000,88000,89000,90000,91000,92000,93000,94000,95000,96000,97000,98000,99000,100000,101000,102000,103000,104000,105000,106000,107000,108000,109000,110000,111000,112000,113000,114000,115000,116000,117000,118000,119000,120000,121000,122000,123000,124000,125000,126000,127000,128000,129000,130000,131000,132000,133000,134000,135000,136000,137000,138000,139000,140000,141000,142000,143000,144000,145000,146000,147000,148000,149000,150000,151000,152000,153000,154000,155000,156000,157000,158000,159000,160000,161000,162000,163000,164000,165000,166000,167000,168000,169000,170000,171000,172000,173000,174000,175000,176000,177000,178000,179000,180000,181000,182000,183000,184000,185000,186000,187000,188000,189000,190000,191000,192000,193000,194000,195000,196000,197000,198000,199000,200000,201000,202000,203000,204000,205000,206000,207000,208000,209000,210000,211000
+Un_gl000225,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chtt=Variants+histogram%3A+Un_gl000228&chxl=1:|Variants%2F1000b|2:|0|||||||||||||13000|||||||||||||26000|||||||||||||39000|||||||||||||52000|||||||||||||65000|||||||||||||78000|||||||||||||91000|||||||||||||104000|||||||||||||117000||||||||||||129000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		Un_gl000228, Position,0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000,21000,22000,23000,24000,25000,26000,27000,28000,29000,30000,31000,32000,33000,34000,35000,36000,37000,38000,39000,40000,41000,42000,43000,44000,45000,46000,47000,48000,49000,50000,51000,52000,53000,54000,55000,56000,57000,58000,59000,60000,61000,62000,63000,64000,65000,66000,67000,68000,69000,70000,71000,72000,73000,74000,75000,76000,77000,78000,79000,80000,81000,82000,83000,84000,85000,86000,87000,88000,89000,90000,91000,92000,93000,94000,95000,96000,97000,98000,99000,100000,101000,102000,103000,104000,105000,106000,107000,108000,109000,110000,111000,112000,113000,114000,115000,116000,117000,118000,119000,120000,121000,122000,123000,124000,125000,126000,127000,128000,129000
+Un_gl000228,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+X&chxr=0,0.0,2.0|1,0.0,100.0|3,0.0,100.0&chxl=1:|Variants%2F1000Kb|2:|0|||||||||||||||15000000|||||||||||||||30000000|||||||||||||||45000000|||||||||||||||60000000|||||||||||||||75000000|||||||||||||||90000000|||||||||||||||105000000|||||||||||||||120000000|||||||||||||||135000000|||||||||||||||150000000|||||155000000|3:|Position&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><br>
+		X, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000,60000000,61000000,62000000,63000000,64000000,65000000,66000000,67000000,68000000,69000000,70000000,71000000,72000000,73000000,74000000,75000000,76000000,77000000,78000000,79000000,80000000,81000000,82000000,83000000,84000000,85000000,86000000,87000000,88000000,89000000,90000000,91000000,92000000,93000000,94000000,95000000,96000000,97000000,98000000,99000000,100000000,101000000,102000000,103000000,104000000,105000000,106000000,107000000,108000000,109000000,110000000,111000000,112000000,113000000,114000000,115000000,116000000,117000000,118000000,119000000,120000000,121000000,122000000,123000000,124000000,125000000,126000000,127000000,128000000,129000000,130000000,131000000,132000000,133000000,134000000,135000000,136000000,137000000,138000000,139000000,140000000,141000000,142000000,143000000,144000000,145000000,146000000,147000000,148000000,149000000,150000000,151000000,152000000,153000000,154000000,155000000
+X,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+	<pre>
+		<img src="http://chart.apis.google.com/chart?cht=bvg&chbh=8,4,2&chs=800x300&chxt=y,y,x,x&chxp=1,50.0|3,50.0&chtt=Variants+histogram%3A+Y&chxr=0,0.0,6.0|1,0.0,100.0|3,0.0,100.0&chd=e:AAAAAAAAAAAAAAAAAAAAAAAAAA..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&chxl=1:|Variants%2F1000Kb|2:|0||||||||||10000000||||||||||20000000||||||||||30000000||||||||||40000000||||||||||50000000|||||||||59000000|3:|Position"><br>
+		Y, Position,0,1000000,2000000,3000000,4000000,5000000,6000000,7000000,8000000,9000000,10000000,11000000,12000000,13000000,14000000,15000000,16000000,17000000,18000000,19000000,20000000,21000000,22000000,23000000,24000000,25000000,26000000,27000000,28000000,29000000,30000000,31000000,32000000,33000000,34000000,35000000,36000000,37000000,38000000,39000000,40000000,41000000,42000000,43000000,44000000,45000000,46000000,47000000,48000000,49000000,50000000,51000000,52000000,53000000,54000000,55000000,56000000,57000000,58000000,59000000
+Y,Count,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+	</pre>
+</center>
+
+<!--==========================================================================
+	Variants by gene 
+	========================================================================== -->
+
+<center>
+	<hr>
+	<b> Details by gene </b><p>
+	<p>
+	<b><a href="snpEff_genes.txt">Here</a></b> you can find a tab-separated table.
+</center>
+</div>
+</center>
