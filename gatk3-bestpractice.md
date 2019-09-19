@@ -1,18 +1,18 @@
-# Welcome to Genome-Analysis-Tutorial Page
+# GATK3 Best Practice Tutorial
 
 Please visit this site to see web version of this git repository.
 <br>
 <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/">https://kennethjhan.github.io/Genome-Analysis-Tutorial/</a>
 
-This page will help you to learn how to make pipeline based on GATK BestPractice.
+This page will help you to learn how to make pipeline based on GATK3 BestPractice.
 
-From this page, <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource">https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource</a> you can download resorce file such as reference fasta, samtools, bwa, picard, GATK4, snpEff and raw fastq file.
+From this page, <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource">https://kennethjhan.github.io/Genome-Analysis-Tutorial/resource</a> you can download resorce file such as reference fasta, samtools, bwa, picard, GATK3, snpEff and raw fastq file.
 
-YES! This tutorial is based on GATK4 which is latest tool from Broad Institute.
+YES! This tutorial is based on GATK3 which is stable and wide used tool from Broad Institute.
 
 I hope everyone learns how to analyze gene data and contributes scientific field.
 
-IF YOU WANT GATK3-BEST PRACTICE PIPELINE PLEASE CLICK <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/gatk3-bestpractice.md">HERE</a>.
+IF YOU WANT GATK4-BEST PRACTICE PIPELINE PLEASE CLICK <a href="https://kennethjhan.github.io/Genome-Analysis-Tutorial/README.md">HERE</a>.
 
 ENJOY!!
 <br><br>
@@ -91,17 +91,19 @@ $ java -jar picard.jar
 
 ```
 
-### 2.4. INSTALL GATK4
+### 2.4. INSTALL GATK3
 
 ```bash
-# 1) Download GATK4
-$ wget https://github.com/broadinstitute/gatk/releases/download/4.0.11.0/gatk-4.0.11.0.zip
+# 1) Download GATK3
+https://software.broadinstitute.org/gatk/download/archive
+Download GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2
 
 # 2) Extract
-$ unzip gatk-4.0.11.0.zip
+$ tar xf GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2
 
-# 3) Run GATK4
+# 3) Run GATK3
 $ java -jar gatk-package-4.0.11.0-local.jar
+$ jaga -jar GenomeAnalysisTK.jar
 
 ## RUNNING ON JAVA8 (NOT JAVA7)
 ```
@@ -185,85 +187,94 @@ Runtime.totalMemory()=660602880
 $ ls –l
 -rw-r--r-- 1 jhan staff 12K May 9 14:53 ucsc.hg19.dict
 ```
+## Parameters
+
 
 ## 4. Map to Reference
 ### 4.1. BWA mem : FASTQ to SAM
 ```bash
-$ bwa mem -R "@RG\tID:test\tSM:SRR000982\tPL:ILLUMINA" ucsc.hg19.fasta SRR000982_1.filt.fastq.gz SRR000982_2.filt.fastq.gz > SRR000982.mapped.sam
+$ bwa mem -R "@RG\tID:test\tSM:${SAMPLE}\tPL:ILLUMINA" ucsc.hg19.fasta ${SAMPLE}_1.filt.fastq.gz ${SAMPLE}_2.filt.fastq.gz > ${SAMPLE}.mapped.sam
 ```
 
 ### 4.2. Samtools : SAM to BAM
 ```bash
-$ samtools view –Sb SRR000982.mapped.sam > SRR000982.mapped.bam
+$ samtools view –Sb ${SAMPLE}.mapped.sam > ${SAMPLE}.mapped.bam
 ```
 
 ### 4.3. Samtools sort : Make Sorted BAM
 ```bash
-$ samtools sort –o SRR000982.mapped.sorted.bam SRR000982.mapped.bam
+$ samtools sort –o ${SAMPLE}.sorted.bam ${SAMPLE}.mapped.bam
 
-$ samtools view SRR000982.mapped.bam | head
-SRR000982.26 131 chrX 26266805
-SRR000982.32 65 chr13 75944171
-SRR000982.32 129 chrX 138770110
-SRR000982.34 115 chr2 190054626
+$ samtools view ${SAMPLE}.mapped.bam | head
+${SAMPLE}.26 131 chrX 26266805
+${SAMPLE}.32 65 chr13 75944171
+${SAMPLE}.32 129 chrX 138770110
+${SAMPLE}.34 115 chr2 190054626
 ……
 
-$ samtools view SRR000982.mapped.sorted.bam | head
-SRR000982.91192 115 chrM
+$ samtools view ${SAMPLE}.sorted.bam | head
+${SAMPLE}.91192 115 chrM
 ……
-SRR000982.186880 65 chrM
-SRR000982.434476 115 chr1
-SRR000982.434476 179 chr1
+${SAMPLE}.186880 65 chrM
+${SAMPLE}.434476 115 chr1
+${SAMPLE}.434476 179 chr1
 # Sort chromosome ordered
+```
+
+### 4.4 (Optional) Run from 4.1 to 4.3 in one command
+```bash
+${BWA} mem -R "@RG\tID:test\tSM:${SAMPLE}\tPL:ILLUMINA" ${REFERENCE} ${SAMPLE}_1.filt.fastq.gz ${SAMPLE}_2.filt.fastq.gz | ${SAMTOOLS} view -Sb - | ${SAMTOOLS} sort - > ${SAMPLE}.sorted.bam
 ```
 
 ## 5. Mark Duplicate
 ### 5.1. Picard MarkDuplicate : Sorted BAM to Markdup BAM
 ```bash
-$ java –jar picard.jar MarkDuplicates I=SRR000982.
-mapped.sorted.bam O=SRR000982.mapped.sorted.markdup.bam
-M=SRR000982.markdup.metrics.txt
+$ ${JAVA} –jar picard.jar MarkDuplicates I=${SAMPLE}.
+sorted.bam O=${SAMPLE}.markdup.bam
+M=${SAMPLE}.markdup.metrics.txt
 ```
 Futher resource: https://broadinstitute.github.io/picard/command-lineoverview.html#MarkDuplicates
 
 ### 5.2. Samtools index : Make BAM index
 ```bash
-$ samtools index SRR000982.mapped.sorted.markdup.bam
+$ samtools index ${SAMPLE}.markdup.bam
 ```
 
 ## 6. GATK
-### 6.1. GATK BaseRecalibrator
+### 6.1. GATK Target Realign
 ```bash
-$ java -jar gatk-package-4.x.x.x-local.jar BaseRecalibrator -I SRR000982.mapped.sorted.markdup.bam -R ucsc.hg19.fasta --known-sites dbsnp_138.hg19.vcf.gz --known-sites Mills_and_1000G_gold_standard.indels.hg19.sites.vcf.gz -O SRR000982.recal_data.table
-
-$ java -jar gatk-package-4.x.x.x-local.jar ApplyBQSR -R ucsc.hg19.fasta -I SRR000982.mapped.sorted.markdup.bam --bqsr-recal-file SRR000982.recal_data.table -O SRR000982.mapped.sorted.markdup.recal.bam
-
-$ samtools index SRR000982.mapped.sorted.markdup.recal.bam
+${JAVA} -jar ${GATK} -T RealignerTargetCreator -R ${REFERENCE} -I ${SAMPLE}.markdup.bam -known ${MILLS} -known ${A1KG} -o ${SAMPLE}.intervals #-L bed
+${JAVA} -jar ${GATK} -T IndelRealigner -R ${REFERENCE} -I ${SAMPLE}.markdup.bam -known ${MILLS} -known ${A1KG} -targetIntervals ${SAMPLE}.intervals -o ${SAMPLE}.realign.bam #-L bed
 ```
 
-### 6.2. GATK HaplotypeCaller
+### 6.2. GATK BaseRecalibrator
 ```bash
-$ java -jar gatk-package-4.x.x.x-local.jar HaplotypeCaller -R ucsc.hg19.fasta -I SRR000982.mapped.sorted.markdup.recal.bam -O SRR000982.g.vcf -ERC GVCF
+${JAVA} -jar ${GATK} -T BaseRecalibrator -R ${REFERENCE} -I ${SAMPLE}.realign.bam -knownSites ${MILLS} -knownSites ${A1KG} -knownSites ${DBSNP138} -o ${SAMPLE}.table #-L bed
+${JAVA} -jar ${GATK} -T PrintReads -R ${REFERENCE} -I ${SAMPLE}.realign.bam -o ${SAMPLE}.recal.bam -BQSR ${SAMPLE}.table #-L bed
+```
 
-$ java -jar gatk-package-4.x.x.x-local.jar GenotypeGVCFs -R ucsc.hg19.fasta -V SRR000982.g.vcf -O SRR000982.rawVariants.vcf
+### 6.2. GATK HaplotypeCaller, GenotypeGVCFs
+```bash
+${JAVA} -jar ${GATK} -T HaplotypeCaller -R ${REFERENCE} -I ${SAMPLE}.recal.bam --emitRefConfidence GVCF --dbsnp ${DBSNP138} -o ${SAMPLE}.g.vcf #-L bed
+${JAVA} -jar ${GATK} -T GenotypeGVCFs -R ${REFERENCE} -V ${SAMPLE}.g.vcf -o ${SAMPLE}.raw.vcf #-L bed
 ```
 
 ### 6.3. GATK Variant Filter
 ```bash
 # Select SNP
-$ java -jar gatk-package-4.x.x.x-local.jar SelectVariants -R ucsc.hg19.fasta -V SRR000982.rawVariants.vcf --select-type-to-include SNP -O SRR000982.rawSNPs.vcf
+${JAVA} -jar ${GATK} -T SelectVariants -R ${REFERENCE} -V ${SAMPLE}.raw.vcf -o ${SAMPLE}.raw.snp.vcf --selectTypeToInclude SNP
 
 # Filter SNP
-$ java -jar gatk-package-4.x.x.x-local.jar VariantFiltration -R ucsc.hg19.fasta -V SRR000982.rawSNPs.vcf -filter "QD < 2.0 || FS > 60.0 || MQ < 40.0 ||  MQRankSum < -12.5  ||  ReadPosRankSum < -8.0" --filter-name SNP_FILTER -O SRR000982.rawSNPs.Filtered.vcf
+${JAVA} -jar ${GATK} -T VariantFiltration -R ${REFERENCE} -V ${SAMPLE}.raw.snp.vcf -o ${SAMPLE}.filtered.snp.vcf --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 ||  MQRankSum < -12.5  ||  ReadPosRankSum < -8.0" --filterName SNP_FILTER
 
 # Select INDEL
-$ java -jar gatk-package-4.x.x.x-local.jar SelectVariants -R ucsc.hg19.fasta -V SRR000982.rawVariants.vcf --select-type-to-include INDEL -O SRR000982.rawINDELs.vcf
+${JAVA} -jar ${GATK} -T SelectVariants -R ${REFERENCE} -V ${SAMPLE}.raw.vcf -o ${SAMPLE}.raw.indel.vcf --selectTypeToInclude INDEL
 
 # Filter INDEL
-$ java -jar gatk-package-4.x.x.x-local.jar VariantFiltration -R ucsc.hg19.fasta -V SRR000982.rawSNPs.vcf -filter "QD < 2.0  || FS > 200.0 || ReadPosRankSum < -20.0" --filter-name INDEL_FILTER -O SRR000982.rawINDELs.Filtered.vcf
+${JAVA} -jar ${GATK} -T VariantFiltration -R ${REFERENCE} -V ${SAMPLE}.raw.indel.vcf -o ${SAMPLE}.filtered.indel.vcf --filterExpression "QD < 2.0  || FS > 200.0 || ReadPosRankSum < -20.0" --filterName INDEL_FILTER
 
 # Combine SNPs and INDELs
-$ java -jar gatk-package-4.x.x.x-local.jar MergeVcfs -I rawSNPs.Filtered.vcf -I SRR000982.rawINDELs.Filtered.vcf -O SRR000982.Filtered.Variants.vcf
+${JAVA} -jar ${GATK} -T CombineVariants -R ${REFERENCE} -V ${SAMPLE}.filtered.snp.vcf -V ${SAMPLE}.filtered.indel.vcf -o ${SAMPLE}.filtered.vcf -genotypeMergeOptions UNSORTED
 
 # Detailed Filter options are here. https://software.broadinstitute.org/gatk/documentation/article?id=2806
 ```
@@ -271,7 +282,7 @@ $ java -jar gatk-package-4.x.x.x-local.jar MergeVcfs -I rawSNPs.Filtered.vcf -I 
 ## 7. SnpEff : Annotation
 ### 7.1. Annotate Variants
 ```bash
-$ java -jar -Xmx4g snpEff.jar -v hg19 SRR000982.filtered.variants.vcf > SRR000982.filtered.variants.annotated.vcf
+${JAVA} -jar -Xmx4g ${SNPEFF} -v hg19 ${SAMPLE}.filtered.vcf > ${SAMPLE}.filtered.annotated.vcf
 ```
 
 
